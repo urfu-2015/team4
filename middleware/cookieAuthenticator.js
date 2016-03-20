@@ -1,17 +1,15 @@
 'use strict';
 
 const hash = require('../lib/hash.js');
-const config = require('config');
-const hashConfig = config.get("hash");
-const salt = hashConfig.cookieSalt;
+const salt = require('config').get("hash").cookieSalt;
 
 module.exports = () => {
     return (req, res, next) => {
         req.user = {};
-        var userId = req.cookies.id;
+        const userId = req.cookies.id;
         if (userId) {
-            var isLoggedIn = hash.validate(userId, salt);
-            var userName = userId.split('.')[0];
+            const isLoggedIn = hash.validate(userId, salt);
+            const userName = userId.split('.')[0];
             if (isLoggedIn) {
                 req.user.name = userName;
             }

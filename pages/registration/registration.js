@@ -1,8 +1,3 @@
-require('../../blocks/header/header.css');
-require('../../blocks/button/button.css');
-require('../../blocks/form/form.css');
-require('../../blocks/grid/grid.css');
-require('../../blocks/footer/footer.css');
 require('./registration.css');
 
 /* global $: true*/
@@ -16,8 +11,8 @@ $('#submit').click(function (e) {
         url: '/user/reg',
         data: {name: name, password: password, email: email}
     })
-        .done(function (msg) {
-            console.log(msg);
+        .done(function () {
+            window.location = '/';
         })
         .fail(function (msg) {
             console.log(msg);

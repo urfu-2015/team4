@@ -1,21 +1,21 @@
 'use strict';
 
 const hash = require('../lib/hash.js');
-const salt = require('config').get("hash").cookieSalt;
+const config = require('config');
+const hashConfig = config.get("hash");
+const debug = require('debug')('team4:middleware:cookieAuthenticator');
+const salt = hashConfig.cookieSalt;
 
 module.exports = () => {
     return (req, res, next) => {
-        if (req.commonData) {
-            req.commonData.user = {};
-        } else {
-            req.commonData = {user: {}};
-        }
-        const userId = req.cookies.id;
+        debug('check cookie');
+        req.user = {};
+        var userId = req.cookies.id;
         if (userId) {
-            const isLoggedIn = hash.validate(userId, salt);
-            const userName = userId.split('.')[0];
+            var isLoggedIn = hash.validate(userId, salt);
+            var userName = userId.split('.')[0];
             if (isLoggedIn) {
-                req.commonData.user.name = userName;
+                req.user.name = userName;
             }
         }
         next();

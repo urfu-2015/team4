@@ -34,11 +34,10 @@ const login = user => {
         result => {
             if (result.length) {
                 return result[0];
-            } else {
-                throw errors.wrongData;
             }
+            throw errors.wrongData;
         },
-        err => {
+        () => {
             throw errors.mongoError;
         }
     );
@@ -48,7 +47,7 @@ const addUser = newUser => {
     return isNameExist(newUser.name)
     .then(() => {
         newUser.password = getHash(newUser.password);
-        newUser.quests = {};
+        newUser.quests = [];
         return usersCollection.insertOne(newUser);
     });
 };

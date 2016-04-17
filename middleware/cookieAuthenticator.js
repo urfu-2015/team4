@@ -16,7 +16,7 @@ module.exports = () => {
             res.commonData.user = {};
         } else {
             res.commonData = {user: {}};
-        }        
+        }
         var userId = req.cookies.id;
         if (userId) {
             var isLoggedIn = hash.validate(userId, salt);

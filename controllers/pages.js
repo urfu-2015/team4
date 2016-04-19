@@ -1,7 +1,8 @@
 'use strict';
 
 const debug = require('debug')('team4:controllers:pages');
-const questsModel = require('../models/quests.js');
+const questsModel = require('../models/quests');
+const userModel = require('../models/users');
 
 function filterFields(fields) {
     return obj => {
@@ -37,6 +38,17 @@ exports.index = (req, res) => {
     } else {
         res.json({quests: choosenQuests});
     }
+};
+
+exports.userPage = (req, res) => {
+    debug('userPage');
+    // const users = userModel(req.db);
+    if (req.commonData.user == req.params.name) {
+        res.render('userPage/userPage', {})
+    } else {
+        res.message('no access').sendStatus(403)
+    }
+
 };
 
 exports.auto = (req, res) => {

@@ -1,20 +1,10 @@
 "use strict";
 
 const translit = require('transliteration');
+
 let quests;
 
 const toUrl = title => translit.slugify(title, {lowercase: true, separator: '-'});
-
-const createPlace = place => {
-    return {
-        title: place.title,
-        img: place.img,
-        geo: place.geo,
-        checkins: 0,
-        likes: 0,
-        comments: []
-    };
-};
 
 const isValidPlace = place => {
     let title = place.title;
@@ -40,6 +30,17 @@ const isValidPlace = place => {
 /*  eslint quote-props: [1, "as-needed"]*/
 const isPlaceExist = (questTitle, placeTitle) => {
     return quests.findOne({title: questTitle, 'places.title': placeTitle});
+};
+
+const createPlace = place => {
+    return {
+        title: place.title,
+        img: place.img,
+        geo: place.geo,
+        checkins: 0,
+        likes: 0,
+        comments: []
+    };
 };
 
 const isQuestValid = quest => {
@@ -91,10 +92,6 @@ const createQuest = quest => {
 };
 
 // Пока не древовидные
-const addCommentToQuest = (title, comment) => {
-    return quests.updateOne({title}, {$push: {comments: comment}});
-};
-
 const addLikeToPlace = (title, placeTitle) => {
     return quests.updateOne(
         {title, 'places.title': placeTitle},
@@ -113,16 +110,6 @@ const addCommentToPlace = (title, placeTitle, comment) => {
         {$push: {'places.$.comments': comment}});
 };
 
-const getAllQuests = () => quests.find({}, {_id: 0}).toArray();
-
-const getLimitQuests = (skip, limit) => {
-    return quests.find({}, {_id: 0}).skip(skip).limit(limit).toArray();
-};
-
-const getQuest = title => quests.find({title}, {_id: 0}).next();
-
-const removeAllQuests = () => quests.remove({});
-
 const likeQuest = (title, user) => {
     return getQuest(title)
         .then(quest => {
@@ -133,19 +120,33 @@ const likeQuest = (title, user) => {
         });
 };
 
+const addCommentToQuest = (title, comment) => {
+    return quests.updateOne({title}, {$push: {comments: comment}});
+};
+
+const getAllQuests = () => quests.find({}, {_id: 0}).toArray();
+
+const getLimitQuests = (skip, limit) => {
+    return quests.find({}, {_id: 0}).skip(skip).limit(limit).toArray();
+};
+
+const getQuest = title => quests.find({title}, {_id: 0}).next();
+
+const removeAllQuests = () => quests.remove({});
+
 module.exports = db => {
     quests = db.collection('quests');
     return {
         createQuest,
-        getQuest,
         getAllQuests,
-        likeQuest,
-        addCommentToQuest,
-        addLikeToPlace,
-        addCommentToPlace,
-        addCheckinToPlace,
-        isPlaceExist,
+        removeAllQuests,
         getLimitQuests,
-        removeAllQuests
+        getQuest,
+        addCommentToQuest,
+        likeQuest,
+        isPlaceExist,
+        addCheckinToPlace,
+        addCommentToPlace,
+        addLikeToPlace
     };
 };

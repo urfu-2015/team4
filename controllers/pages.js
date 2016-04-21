@@ -1,6 +1,7 @@
 'use strict';
 
 const debug = require('debug')('team4:controllers:pages');
+
 const questsModel = require('../models/quests.js');
 
 function filterFields(fields) {
@@ -39,17 +40,17 @@ exports.index = (req, res) => {
     }
 };
 
-exports.auto = (req, res) => {
-    debug('auto');
-    res.render('authorization/authorization');
+exports.auth = (req, res) => {
+    debug('auth');
+    res.renderLayout('./pages/authorization/authorization.hbs');
 };
 
 exports.reg = (req, res) => {
     debug('reg');
-    res.render('registration/registration');
+    res.renderLayout('./pages/registration/registration.hbs');
 };
 
 exports.error404 = (req, res) => {
     debug('error404');
-    res.status(404).render('notFound/notFound');
+    res.status(404).renderLayout('./pages/notFound/notFound.hbs');
 };

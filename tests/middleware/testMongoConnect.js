@@ -3,7 +3,7 @@
 const chai = require('chai');
 const sinon = require('sinon');
 
-/* eslint no-unused-lets: 0*/
+/* eslint no-unused-vars: 0 */
 const should = chai.should();
 
 chai.use(require('sinon-chai'));
@@ -22,12 +22,12 @@ describe('Tests for mongoConnect.js', () => {
             });
         });
         cb(actual);
-        /* eslint no-unused-expressions: 0*/
+        /* eslint no-unused-expressions: 0 */
         cb.should.have.been.calledOnce;
         cb.should.have.been.calledWith();
     });
 
-    /* eslint max-nested-callbacks: [2, 5]*/
+    /* eslint max-nested-callbacks: [2, 5] */
     it('Should check that returns same db for multiple requests', done => {
         let actual = mongoConnect();
         let req = {};
@@ -44,7 +44,7 @@ describe('Tests for mongoConnect.js', () => {
             });
         });
         cb(actual);
-        /* eslint no-unused-expressions: 0*/
+        /* eslint no-unused-expressions: 0 */
         cb.should.have.been.calledOnce;
         cb.should.have.been.calledWith();
     });

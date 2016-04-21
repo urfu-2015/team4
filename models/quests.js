@@ -27,7 +27,7 @@ const isValidPlace = place => {
     return true;
 };
 
-/*  eslint quote-props: [1, "as-needed"]*/
+/*  eslint quote-props: [1, "as-needed"] */
 const isPlaceExist = (questTitle, placeTitle) => {
     return quests.findOne({title: questTitle, 'places.title': placeTitle});
 };
@@ -92,12 +92,6 @@ const createQuest = quest => {
 };
 
 // Пока не древовидные
-const addLikeToPlace = (title, placeTitle) => {
-    return quests.updateOne(
-        {title, 'places.title': placeTitle},
-        {$inc: {'places.$.likes': 1}});
-};
-
 const addCheckinToPlace = (title, placeTitle) => {
     return quests.updateOne(
         {title, 'places.title': placeTitle},
@@ -110,6 +104,20 @@ const addCommentToPlace = (title, placeTitle, comment) => {
         {$push: {'places.$.comments': comment}});
 };
 
+const addCommentToQuest = (title, comment) => {
+    return quests.updateOne({title}, {$push: {comments: comment}});
+};
+
+const getAllQuests = () => quests.find({}, {_id: 0}).toArray();
+
+const removeAllQuests = () => quests.remove({});
+
+const getQuest = title => quests.find({title}, {_id: 0}).next();
+
+const getLimitQuests = (skip, limit) => {
+    return quests.find({}, {_id: 0}).skip(skip).limit(limit).toArray();
+};
+
 const likeQuest = (title, user) => {
     return getQuest(title)
         .then(quest => {
@@ -120,19 +128,11 @@ const likeQuest = (title, user) => {
         });
 };
 
-const addCommentToQuest = (title, comment) => {
-    return quests.updateOne({title}, {$push: {comments: comment}});
+const addLikeToPlace = (title, placeTitle) => {
+    return quests.updateOne(
+        {title, 'places.title': placeTitle},
+        {$inc: {'places.$.likes': 1}});
 };
-
-const getAllQuests = () => quests.find({}, {_id: 0}).toArray();
-
-const getLimitQuests = (skip, limit) => {
-    return quests.find({}, {_id: 0}).skip(skip).limit(limit).toArray();
-};
-
-const getQuest = title => quests.find({title}, {_id: 0}).next();
-
-const removeAllQuests = () => quests.remove({});
 
 module.exports = db => {
     quests = db.collection('quests');

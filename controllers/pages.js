@@ -33,7 +33,7 @@ exports.index = (req, res) => {
     let choosenQuests = quests.getLimitQuests(questNum, 10);
     choosenQuests = choosenQuests.forEach(filterFields(['url', 'title', 'photo']));
     if (questNum === 0) {
-        res.render('index/index',
+        res.renderLayout('./pages/authorization/authorization.hbs',
             {commonData: req.commonData, quests: choosenQuests});
     } else {
         res.json({quests: choosenQuests});

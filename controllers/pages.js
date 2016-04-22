@@ -27,7 +27,7 @@ exports.index = (req, res) => {
     debug('index');
     const quests = questsModel(req.db);
     let questNum = req.body.hasOwnProperty('skip') ? req.body.skip : 0;
-    quests.getLimitQuests(questNum, 10).then((chosenQuests) => {
+    quests.getLimitQuests(questNum, 10).then(chosenQuests => {
         chosenQuests = chosenQuests.forEach(filterFields(['url', 'title', 'photo']));
         if (questNum === 0) {
             res.render('index/index',
@@ -41,12 +41,11 @@ exports.index = (req, res) => {
 exports.userPage = (req, res) => {
     debug('userPage');
     // const users = userModel(req.db);
-    if (req.commonData.user == req.params.name) {
-        res.render('userPage/userPage', {})
+    if (req.commonData.user === req.params.name) {
+        res.render('userPage/userPage', {});
     } else {
-        res.message('no access').sendStatus(403)
+        res.message('no access').sendStatus(403);
     }
-
 };
 
 exports.auto = (req, res) => {

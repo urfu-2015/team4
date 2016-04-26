@@ -9,8 +9,8 @@ module.exports = function (app) {
     app.post('/user/reg', users.validate, users.register);
     app.post('/user/logout', users.logout);
     app.get('/get-more-quests', pages.index);
-    app.get('/auth', pages.auto);
     app.get('/user/:name', pages.userPage);
+    app.get('/auth', pages.auth);
     app.get('/reg', pages.reg);
     app.all('*', pages.error404);
 

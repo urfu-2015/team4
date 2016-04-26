@@ -17,30 +17,32 @@
 <body>
 {{> header/header }}
 
-<div>
-    <h1 id="username">
-        {{commonData.user.name}}
-    </h1>
-</div>
 
-<div id="inprocess">
-    <h2>В процессе</h2>
-    <ul>
-        {{#each quests.inprocess}}
-            <li><a href="{{url}}">{{title}}</a></li>
-        {{/each}}
-    </ul>
-</div>
-
-<div id="finished">
-    <h2>Завершенные</h2>
-    <ul>
-        {{#each quests.finished}}
-            <li><a href="{{url}}">{{title}}</a></li>
-        {{/each}}
-    </ul>
-</div>
-
+{{#if hasAccess}}
+    <div id="username">
+        <h1>
+            {{name}}
+        </h1>
+    </div>
+    <div id="inprocess">
+        <h2>В процессе</h2>
+        <ul>
+            {{#each quests.inprocess}}
+                <li><a href="{{url}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="finished">
+        <h2>Завершенные</h2>
+        <ul>
+            {{#each quests.finished}}
+                <li><a href="{{url}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+{{else}}
+    <div>{{qq}}</div>
+{{/if}}
 
 {{> footer/footer }}
 <script src="/userPage.js"></script>

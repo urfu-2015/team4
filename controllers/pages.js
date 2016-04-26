@@ -41,10 +41,11 @@ exports.index = (req, res) => {
 exports.userPage = (req, res) => {
     debug('userPage');
     // const users = userModel(req.db);
-    if (req.commonData.user === req.params.name) {
-        res.render('userPage/userPage', {});
+    console.log(req.commonData.user.name === req.params.name, req.commonData.user.name, req.params.name);
+    if (req.commonData.user.name === req.params.name) {
+        res.render('userPage/userPage', {name: req.params.name, hasAccess:true} );
     } else {
-        res.message('no access').sendStatus(403);
+        res.status(403).render('userPage/userPage', {name: req.params.name, hasAccess:false});
     }
 };
 

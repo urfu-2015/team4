@@ -83,12 +83,12 @@ function isNameExist(newName) {
     return new Promise((resolve, reject) => {
         usersCollection.find({name: newName}).toArray((err, result) => {
             if (err) {
-                    reject(errors.mongoError);
-                } else if (result.length) {
-                reject(errors.nameExist);
-            } else {
-                resolve();
-            }
+                reject(errors.mongoError);
+            } else if (result.length) {
+                    reject(errors.nameExist);
+                } else {
+                    resolve();
+                }
         });
     });
 }

@@ -32,11 +32,11 @@ const login = user => {
     return usersCollection.find(user).toArray()
             .then(
                 result => {
-            if (result.length) {
-        return result[0];
-    }
-    throw errors.wrongData;
-},
+                    if (result.length) {
+                return result[0];
+            }
+                    throw errors.wrongData;
+                },
     () => {
         throw errors.mongoError;
     }
@@ -46,11 +46,11 @@ const login = user => {
 const addUser = newUser => {
     return isNameExist(newUser.name)
         .then(() => {
-        newUser.password = getHash(newUser.password);
-    newUser.finishedQuests = [];
-    newUser.inProgressQuests = [];
-    return usersCollection.insertOne(newUser);
-});
+            newUser.password = getHash(newUser.password);
+            newUser.finishedQuests = [];
+            newUser.inProgressQuests = [];
+            return usersCollection.insertOne(newUser);
+        });
 };
 
 function addQuestInProgress(name, title) {
@@ -62,7 +62,7 @@ function removeQuestInProgress(name, title) {
 }
 
 function getQuestsInProgress(name) {
-   return usersCollection.find({name})
+    return usersCollection.find({name})
        .toArray()
        .then(user => user.inProgressQuests);
 }
@@ -81,16 +81,16 @@ function questFinish(name, title) {
 
 function isNameExist(newName) {
     return new Promise((resolve, reject) => {
-            usersCollection.find({name: newName}).toArray((err, result) => {
-            if (err) {
+        usersCollection.find({name: newName}).toArray((err, result) => {
+                if (err) {
                 reject(errors.mongoError);
             } else if (result.length) {
-        reject(errors.nameExist);
-    } else {
-        resolve();
-    }
-});
-});
+                reject(errors.nameExist);
+            } else {
+                resolve();
+            }
+            });
+    });
 }
 
 const operations = {

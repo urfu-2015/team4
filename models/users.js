@@ -100,7 +100,8 @@ const operations = {
     removeQuestInProgress,
     questFinish,
     getQuestsInProgress,
-    getFinishedQuests
+    getFinishedQuests,
+    isNameExist
 };
 
 module.exports = db => {

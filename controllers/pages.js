@@ -25,16 +25,6 @@ function getRandomPhoto(quest) {
 
 exports.index = (req, res) => {
     debug('index');
-    let chosenQuests = [
-        {url: 'url1', photo:'photo1', title:'title1'},
-        {url: 'url1', photo:'photo1', title:'title1'},
-        {url: 'url1', photo:'photo1', title:'title1'},
-        {url: 'url1', photo:'photo1', title:'title1'},
-        {url: 'url1', photo:'photo1', title:'title1'},
-        {url: 'url1', photo:'photo1', title:'title1'}
-    ];
-    console.log(chosenQuests);
-    res.renderLayout('./pages/index/index.hbs', {quests: chosenQuests});
     const quests = questsModel(req.db);
     let questNum = req.body.hasOwnProperty('skip') ? req.body.skip : 0;
     quests.getLimitQuests(questNum, 10).then(chosenQuests => {

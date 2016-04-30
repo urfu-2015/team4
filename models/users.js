@@ -61,6 +61,12 @@ function removeQuestInProgress(name, title) {
     return usersCollection.update({name}, {$pull: {inProgressQuests: title}});
 }
 
+function getQuestsInProgress(name) {
+   return usersCollection.find({name})
+       .toArray()
+       .then(user => user.inProgressQuests);
+}
+
 function questFinish(name, title) {
     return usersCollection.update({name},
         {$pull: {inProgressQuests: title}},

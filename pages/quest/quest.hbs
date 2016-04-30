@@ -1,0 +1,54 @@
+{{#extend "base"}}
+    {{#content "title"}}
+        <title>{{title}}</title>
+    {{/content}}
+
+    {{#content "styles"}}
+        <link rel="stylesheet" href="/quest.css">
+    {{/content}}
+
+    {{#content "main"}}
+        <div class="title">{{title}}</div>
+        <div class="panel panel-primary">
+            <div id="des-title" class="panel-heading">
+                <h3 class="panel-title">Описание</h3>
+            </div>
+            <div class="panel-body description">{{description}}</div>
+        </div>
+        {{#if commonData.user}}
+            {{#if inProgress}}
+                <div class="message">Вы проходиете квест</div>
+            {{else}}
+                {{#if finished}}
+                    <div class="finished">Вы успешно прошли квест</div>
+                {{else}}
+                    <div id="start-quest">Начать квест</div>
+                {{/if}}
+            {{/if}}
+        {{else}}
+            <a href="/reg">Зарегестрироваться чтобы пройти квест</a>
+        {{/if}}
+        <div class="likes">
+            {{#if commonData.user}}
+                {{#if liked}}
+                    <button id="quest-like" class="liked"></button>
+                {{else}}
+                    <button id="quest-like" class="unliked"></button>
+                {{/if}}
+            {{else}}
+                <div class="liked"></div>
+            {{/if}}
+            <span class="badge">{{likes}}</span>
+        </div>
+        {{#each places}}
+           {{>place/place this user=../commonData.user}}
+        {{/each}}
+        {{#each comments}}
+            {{> comment/comment this user=../commonData.user}}
+        {{/each}}
+    {{/content}}
+
+    {{#content "scripts"}}
+        <script src="/quest.js"></script>
+    {{/content}}
+{{/extend}}

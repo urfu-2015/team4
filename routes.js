@@ -2,6 +2,7 @@
 
 const pages = require('./controllers/pages');
 const users = require('./controllers/users');
+const quests = require('./controllers/quests');
 
 module.exports = function (app) {
     app.get('/', pages.index);
@@ -11,6 +12,7 @@ module.exports = function (app) {
     app.get('/auth', pages.auth);
     app.get('/reg', pages.reg);
     app.get('/get-more-quests', pages.index);
+    app.get('/quest/:name', quests.quest);
     app.all('*', pages.error404);
 
     app.use((err, req, res) => {

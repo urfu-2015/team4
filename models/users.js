@@ -33,8 +33,8 @@ const login = user => {
             .then(
                 result => {
                     if (result.length) {
-                return result[0];
-            }
+                        return result[0];
+                    }
                     throw errors.wrongData;
                 },
     () => {
@@ -82,14 +82,14 @@ function questFinish(name, title) {
 function isNameExist(newName) {
     return new Promise((resolve, reject) => {
         usersCollection.find({name: newName}).toArray((err, result) => {
-                if (err) {
-                reject(errors.mongoError);
-            } else if (result.length) {
+            if (err) {
+                    reject(errors.mongoError);
+                } else if (result.length) {
                 reject(errors.nameExist);
             } else {
                 resolve();
             }
-            });
+        });
     });
 }
 
@@ -98,7 +98,9 @@ const operations = {
     login,
     addQuestInProgress,
     removeQuestInProgress,
-    questFinish
+    questFinish,
+    getQuestsInProgress,
+    getFinishedQuests
 };
 
 module.exports = db => {

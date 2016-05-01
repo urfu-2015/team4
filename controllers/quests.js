@@ -19,10 +19,10 @@ exports.addQuest = (req, res) => {
 
 exports.quest = (req, res) => {
     debug('get quest');
-    //let questName = req.params.name;
+    // let questName = req.params.name;
     let user = req.commonData.user;
     let commonData = {commonData: req.commonData};
-    //let model = questsModel(req.db);
+    // let model = questsModel(req.db);
     let data = {
         title: 'test',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
@@ -51,13 +51,25 @@ exports.quest = (req, res) => {
             ' Sed et fringilla eros. Fusce non auctor leo.' +
             ' Nullam tristique facilisis tellus, non congue ante sodales ut.'
         }],
-        places:[{
+        places: [{
             title: 'placeTest',
             photo: 'http://img1.gtsstatic.com/v%E9hicule/phot-8_1623_w620.jpg',
             checkIn: false, // boolean
-            comments:[{
+            comments: [{
                 author: 'authorPlace',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros. Nullam tristique id lorem in condimentum. Vestibulum dictum velit quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo. Nullam tristique facilisis tellus, non congue ante sodales ut. Duis efficitur mauris porttitor pharetra tincidunt. Aliquam laoreet id diam eget viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
+                text: 'Lorem ipsum dolor sit amet,' +
+                ' consectetur adipiscing elit.' +
+                ' Nunc lobortis aliquam hendrerit.' +
+                ' Curabitur vehicula, nunc sed sodales' +
+                ' cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros.' +
+                ' Nullam tristique id lorem in condimentum.' +
+                ' Vestibulum dictum velit quis dolor tincidunt rutrum.' +
+                ' Sed et fringilla eros. Fusce non auctor leo.' +
+                ' Nullam tristique facilisis tellus, non congue ante sodales ut.' +
+                ' Duis efficitur mauris porttitor pharetra tincidunt.' +
+                ' Aliquam laoreet id diam eget viverra.' +
+                ' Pellentesque habitant morbi tristique senectus et netus ' +
+                'et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
             }],
         }]
     };
@@ -74,7 +86,6 @@ exports.likeQuest = (req, res) => {
     debug(`like quest ${questName}`);
     let model = questsModel(req.db);
     let user = req.commonData.user;
-    res.status(200).send({count});
     if (!user) {
         res.status(401);
         return;

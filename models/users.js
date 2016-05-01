@@ -30,27 +30,24 @@ function getHash(password) {
 const login = user => {
     user.password = getHash(user.password);
     return usersCollection.find(user).toArray()
-            .then(
-                result => {
+        .then(result => {
             if (result.length) {
-        return result[0];
-    }
-    throw errors.wrongData;
-},
-    () => {
-        throw errors.mongoError;
-    }
-);
+                return result[0];
+            }
+            throw errors.wrongData;
+        },
+        () => {throw errors.mongoError;}
+        );
 };
 
 const addUser = newUser => {
     return isNameExist(newUser.name)
         .then(() => {
-        newUser.password = getHash(newUser.password);
-    newUser.finishedQuests = [];
-    newUser.inProgressQuests = [];
-    return usersCollection.insertOne(newUser);
-});
+            newUser.password = getHash(newUser.password);
+            newUser.finishedQuests = [];
+            newUser.inProgressQuests = [];
+            return usersCollection.insertOne(newUser);
+        });
 };
 
 function addQuestInProgress(name, title) {
@@ -59,6 +56,19 @@ function addQuestInProgress(name, title) {
 
 function removeQuestInProgress(name, title) {
     return usersCollection.update({name}, {$pull: {inProgressQuests: title}});
+}
+
+
+function getQuestsInProgress(name) {
+    return usersCollection.find({name})
+       .toArray()
+       .then(user => user.inProgressQuests);
+}
+
+function getFinishedQuests(name) {
+    return usersCollection.find({name})
+        .toArray()
+        .then(user => user.finishedQuests);
 }
 
 function questFinish(name, title) {
@@ -86,7 +96,10 @@ const operations = {
     login,
     addQuestInProgress,
     removeQuestInProgress,
-    questFinish
+    questFinish,
+    getQuestsInProgress,
+    getFinishedQuests,
+    isNameExist
 };
 
 module.exports = db => {

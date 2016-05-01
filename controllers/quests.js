@@ -70,7 +70,7 @@ exports.quest = (req, res) => {
                 ' Aliquam laoreet id diam eget viverra.' +
                 ' Pellentesque habitant morbi tristique senectus et netus ' +
                 'et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
-            }],
+            }]
         }]
     };
     if (user) {

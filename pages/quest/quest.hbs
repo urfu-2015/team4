@@ -8,8 +8,10 @@
     {{/content}}
 
     {{#content "main"}}
-        <div class="title">{{title}}</div>
-        <div class="panel panel-primary">
+        <div class="page-header">
+            <h1 id="quest-title">{{title}}</h1>
+        </div>
+        <div class="panel main panel-primary">
             <div id="des-title" class="panel-heading">
                 <h3 class="panel-title">Описание</h3>
             </div>
@@ -26,26 +28,27 @@
                 {{/if}}
             {{/if}}
         {{else}}
-            <a href="/reg">Зарегестрироваться чтобы пройти квест</a>
+            <form class="reg-ref" method="get" action="/reg">
+                <button class="btn btn-success btn-lg" type="submit">Зарегестрироваться чтобы пройти квест</button>
+            </form>
         {{/if}}
         <div class="likes">
             {{#if commonData.user}}
                 {{#if liked}}
-                    <button id="quest-like" class="liked"></button>
+                    <input type="checkbox" id="quest-like" checked>
                 {{else}}
-                    <button id="quest-like" class="unliked"></button>
+                    <input type="checkbox" id="quest-like">
                 {{/if}}
+                <label class="like" for="quest-like">❤</label>
             {{else}}
-                <div class="liked"></div>
+                <span class="like">❤</span>
             {{/if}}
-            <span class="badge">{{likes}}</span>
+            <span id="likes-count" class="badge">{{likes}}</span>
         </div>
         {{#each places}}
-           {{>place/place this user=../commonData.user}}
+           {{>place/place this user =../commonData.user}}
         {{/each}}
-        {{#each comments}}
-            {{> comment/comment this user=../commonData.user}}
-        {{/each}}
+        {{> comments/comments comments =../comments}}
     {{/content}}
 
     {{#content "scripts"}}

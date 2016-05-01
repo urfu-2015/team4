@@ -13,6 +13,9 @@ module.exports = function (app) {
     app.get('/reg', pages.reg);
     app.get('/get-more-quests', pages.index);
     app.get('/quest/:name', quests.quest);
+    app.post('/like-quest/:name', quests.likeQuest);
+    app.post('/place-comment/:quest/:place', quests.addCommentToPlace);
+    app.post('/quest-comment/:name', quests.addCommentToQuest);
     app.all('*', pages.error404);
 
     app.use((err, req, res) => {

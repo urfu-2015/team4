@@ -1,3 +1,15 @@
-<div class="title">{{title}}</div>
-<img src="{{photo}}"/>
-<div>{{likes}}</div>
+<div class="row">
+    <div class="place">
+        <div class="thumbnail">
+            <img src={{photo}} alt={{title}}>
+            <div class="caption">
+                <h3 class="place-title">{{title}}</h3>
+                {{> comments/comments this}}
+                <p><a href="#" class="btn btn-primary" role="button">Button</a>
+                    <a href="#" class="btn btn-default" role="button">Button</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

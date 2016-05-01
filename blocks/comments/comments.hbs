@@ -1,0 +1,13 @@
+<div class="panel main panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Комментарии</h3>
+    </div>
+    <div class="panel-body">
+        {{#each comments}}
+            <div class="panel panel-default comment">
+                <div class="panel-heading">{{author}}</div>
+                <div class="panel-body">{{text}}</div>
+            </div>
+        {{/each}}
+    </div>
+</div>

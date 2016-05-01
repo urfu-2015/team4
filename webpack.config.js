@@ -8,11 +8,13 @@ module.exports = {
     context: path.join(__dirname, 'pages'),
     entry: {
         base: './base/base.js',
+        index: './index/index.js',
         authorization: './authorization/authorization.js',
         registration: './registration/registration.js',
-        notFound: './notFound/notFound.js',
-        index: './index/index.js',
-        quest: './quest/quest.js'
+        quest: './quest/quest.js',
+        userPage: './userPage/userPage.js',
+        createQuest: './createQuest/createQuest.js',
+        notFound: './notFound/notFound.js'
     },
     devtool: 'source-map',
     output: {

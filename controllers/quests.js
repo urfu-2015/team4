@@ -19,25 +19,42 @@ exports.addQuest = (req, res) => {
 
 exports.quest = (req, res) => {
     debug('get quest');
-    let questName = req.params.name;
+    //let questName = req.params.name;
     let user = req.commonData.user;
     let commonData = {commonData: req.commonData};
-    let model = questsModel(req.db);
+    //let model = questsModel(req.db);
     let data = {
         title: 'test',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros. Nullam tristique id lorem in condimentum. Vestibulum dictum velit quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo. Nullam tristique facilisis tellus, non congue ante sodales ut. Duis efficitur mauris porttitor pharetra tincidunt. Aliquam laoreet id diam eget viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum. Phasellus quis auctor lorem.',
-        likes: 10, //num
-        liked: false, //boolean
-        inProgress: false, //boolean
-        finished: false, //boolean
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
+        ' Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus,' +
+        ' felis ligula placerat sem, id tincidunt risus urna vitae eros.' +
+        ' Nullam tristique id lorem in condimentum. Vestibulum dictum velit' +
+        ' quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo.' +
+        ' Nullam tristique facilisis tellus, non congue ante sodales ut.' +
+        ' Duis efficitur mauris porttitor pharetra tincidunt.' +
+        ' Aliquam laoreet id diam eget viverra.' +
+        'Pellentesque habitant morbi tristique senectus' +
+        ' et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.' +
+        ' Phasellus quis auctor lorem.',
+        likes: 10, // num
+        liked: false, // boolean
+        inProgress: false, // boolean
+        finished: false, // boolean
         comments: [{
-        author: 'author',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros. Nullam tristique id lorem in condimentum. Vestibulum dictum velit quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo. Nullam tristique facilisis tellus, non congue ante sodales ut. Duis efficitur mauris porttitor pharetra tincidunt. Aliquam laoreet id diam eget viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
-    }],
+            author: 'author',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
+            ' Nunc lobortis aliquam hendrerit. Curabitur vehicula,' +
+            ' nunc sed sodales cursus, felis ligula placerat sem,' +
+            ' id tincidunt risus urna vitae eros.' +
+            ' Nullam tristique id lorem in condimentum.' +
+            ' Vestibulum dictum velit quis dolor tincidunt rutrum.' +
+            ' Sed et fringilla eros. Fusce non auctor leo.' +
+            ' Nullam tristique facilisis tellus, non congue ante sodales ut.'
+        }],
         places:[{
             title: 'placeTest',
             photo: 'http://img1.gtsstatic.com/v%E9hicule/phot-8_1623_w620.jpg',
-            checkIn: false, //boolean
+            checkIn: false, // boolean
             comments:[{
                 author: 'authorPlace',
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros. Nullam tristique id lorem in condimentum. Vestibulum dictum velit quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo. Nullam tristique facilisis tellus, non congue ante sodales ut. Duis efficitur mauris porttitor pharetra tincidunt. Aliquam laoreet id diam eget viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
@@ -45,9 +62,9 @@ exports.quest = (req, res) => {
         }]
     };
     if (user) {
-        //data = getInfo(req.commonData.user, req.params.name)
+        // data = getInfo(req.commonData.user, req.params.name)
     } else {
-        //data = questsModel.getQuest(questName);
+        // data = questsModel.getQuest(questName);
     }
     res.status(200).renderLayout('./pages/quest/quest.hbs', Object.assign(data, commonData));
 };
@@ -57,7 +74,7 @@ exports.likeQuest = (req, res) => {
     debug(`like quest ${questName}`);
     let model = questsModel(req.db);
     let user = req.commonData.user;
-    res.status(200).send({count})
+    res.status(200).send({count});
     if (!user) {
         res.status(401);
         return;
@@ -67,7 +84,7 @@ exports.likeQuest = (req, res) => {
         .then(count => {
             res.status(200).send({count});
         });
-}
+};
 
 exports.addCommentToPlace = (req, res) => {
     let questName = req.params.quest;
@@ -84,7 +101,7 @@ exports.addCommentToPlace = (req, res) => {
     model
         .addCommentToPlace(questName, placeName, comment)
         .then(() => res.status(200));
-}
+};
 
 exports.addCommentToQuest = (req, res) => {
     let questName = req.params.name;
@@ -98,6 +115,6 @@ exports.addCommentToQuest = (req, res) => {
     }
     let comment = {author, text};
     model
-        .addCommentToQuest(questName, placeName, comment)
+        .addCommentToQuest(questName, comment)
         .then(() => res.status(200));
-}
+};

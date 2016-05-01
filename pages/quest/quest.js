@@ -2,7 +2,7 @@ require('../../blocks/place/place.css');
 require('../../blocks/comments/comments.css');
 require('./quest.css');
 
-$('.panel.main').each(function() {
+$('.panel.main').each(function () {
     $(this).click(function () {
         var last = $(this).children().last();
         if ($(last).css('display') === 'none') {
@@ -13,7 +13,7 @@ $('.panel.main').each(function() {
     });
 });
 
-$('#quest-like').change(function (e) {
+$('#quest-like').change(function () {
     var name = $('#quest-title').val();
     $.ajax({
         method: 'POST',
@@ -29,6 +29,3 @@ $('#quest-like').change(function (e) {
         console.log(msg);
     });
 });
-
-
-

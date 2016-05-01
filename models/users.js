@@ -36,8 +36,9 @@ const login = user => {
             }
             throw errors.wrongData;
         },
-        () => {throw errors.mongoError;}
-        );
+        () => {
+            throw errors.mongoError;
+        });
 };
 
 const addUser = newUser => {
@@ -57,7 +58,6 @@ function addQuestInProgress(name, title) {
 function removeQuestInProgress(name, title) {
     return usersCollection.update({name}, {$pull: {inProgressQuests: title}});
 }
-
 
 function getQuestsInProgress(name) {
     return usersCollection.find({name})
@@ -79,16 +79,16 @@ function questFinish(name, title) {
 
 function isNameExist(newName) {
     return new Promise((resolve, reject) => {
-            usersCollection.find({name: newName}).toArray((err, result) => {
-            if (err) {
+        usersCollection.find({name: newName}).toArray((err, result) => {
+                if (err) {
                 reject(errors.mongoError);
             } else if (result.length) {
-        reject(errors.nameExist);
-    } else {
-        resolve();
-    }
-});
-});
+                reject(errors.nameExist);
+            } else {
+                resolve();
+            }
+            });
+    });
 }
 
 const operations = {

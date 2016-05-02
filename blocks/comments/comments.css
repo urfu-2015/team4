@@ -10,9 +10,11 @@
 
 .comment-list .panel
 {
-    position:relative;
+    position: relative;
 }
-.comment-list .panel>.panel-heading:after,.panel>.panel-heading:before
+
+.comment-list .panel > .panel-heading::after,
+.panel > .panel-heading::before
 {
     position: absolute;
     top: 11px;
@@ -27,13 +29,15 @@
     pointer-events: none;
 }
 
-.comment-list .panel>.panel-heading:after{
+.comment-list .panel > .panel-heading::after
+{
     border-width: 7px;
     border-right-color: #f7f7f7;
     margin-top: 1px;
     margin-left: 2px;
 }
-.comment-list .panel>.panel-heading:before
+
+.comment-list .panel > .panel-heading::before
 {
     border-right-color: #ddd;
     border-width: 8px;

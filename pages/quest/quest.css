@@ -46,7 +46,8 @@ input[type="checkbox"]
     font-size: 50px;
 }
 
-.reg-ref , #start-quest
+.reg-ref,
+#start-quest
 {
     margin: 20px auto;
     width: 50%;
@@ -72,4 +73,3 @@ body > .panel
         width: 100%;
     }
 }
-

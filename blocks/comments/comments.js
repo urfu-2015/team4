@@ -11,8 +11,8 @@ $('.commentForm').each(function () {
             method: 'POST',
             url: url,
             data: {
-                    name: name, text: text
-                }
+                name: name, text: text
+            }
         })
             .done(function () {
                 console.log('add comments');

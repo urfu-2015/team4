@@ -24,7 +24,7 @@
                 {{#if finished}}
                     <div class="finished">Вы успешно прошли квест</div>
                 {{else}}
-                    <div id="start-quest">Начать квест</div>
+                    <button class="btn btn-success btn-lg" id="start-quest">Начать квест</button>
                 {{/if}}
             {{/if}}
         {{else}}
@@ -43,12 +43,12 @@
             {{else}}
                 <span class="like">❤</span>
             {{/if}}
-            <span id="likes-count" class="badge">{{likes}}</span>
+            <span id="likes-count" class="badge">{{likes.length}}</span>
         </div>
         {{#each places}}
-           {{>place/place this user =../commonData.user}}
+           {{>place/place this user =../commonData.user quest =../title}}
         {{/each}}
-        {{> comments/comments comments =../comments}}
+        {{> comments/comments this user =../commonData.user}}
     {{/content}}
 
     {{#content "scripts"}}

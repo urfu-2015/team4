@@ -18,67 +18,31 @@ exports.addQuest = (req, res) => {
 };
 
 exports.quest = (req, res) => {
-    debug('get quest');
-    // let questName = req.params.name;
+    let questName = req.params.name;
+    debug(`get quest ${questName}`);
     let user = req.commonData.user;
     let commonData = {commonData: req.commonData};
-    // let model = questsModel(req.db);
-    let data = {
-        title: 'test',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-        ' Nunc lobortis aliquam hendrerit. Curabitur vehicula, nunc sed sodales cursus,' +
-        ' felis ligula placerat sem, id tincidunt risus urna vitae eros.' +
-        ' Nullam tristique id lorem in condimentum. Vestibulum dictum velit' +
-        ' quis dolor tincidunt rutrum. Sed et fringilla eros. Fusce non auctor leo.' +
-        ' Nullam tristique facilisis tellus, non congue ante sodales ut.' +
-        ' Duis efficitur mauris porttitor pharetra tincidunt.' +
-        ' Aliquam laoreet id diam eget viverra.' +
-        'Pellentesque habitant morbi tristique senectus' +
-        ' et netus et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.' +
-        ' Phasellus quis auctor lorem.',
-        likes: 10, // num
-        liked: false, // boolean
-        inProgress: false, // boolean
-        finished: false, // boolean
-        comments: [{
-            author: 'author',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-            ' Nunc lobortis aliquam hendrerit. Curabitur vehicula,' +
-            ' nunc sed sodales cursus, felis ligula placerat sem,' +
-            ' id tincidunt risus urna vitae eros.' +
-            ' Nullam tristique id lorem in condimentum.' +
-            ' Vestibulum dictum velit quis dolor tincidunt rutrum.' +
-            ' Sed et fringilla eros. Fusce non auctor leo.' +
-            ' Nullam tristique facilisis tellus, non congue ante sodales ut.'
-        }],
-        places: [{
-            title: 'placeTest',
-            photo: 'http://img1.gtsstatic.com/v%E9hicule/phot-8_1623_w620.jpg',
-            checkIn: false, // boolean
-            comments: [{
-                author: 'authorPlace',
-                text: 'Lorem ipsum dolor sit amet,' +
-                ' consectetur adipiscing elit.' +
-                ' Nunc lobortis aliquam hendrerit.' +
-                ' Curabitur vehicula, nunc sed sodales' +
-                ' cursus, felis ligula placerat sem, id tincidunt risus urna vitae eros.' +
-                ' Nullam tristique id lorem in condimentum.' +
-                ' Vestibulum dictum velit quis dolor tincidunt rutrum.' +
-                ' Sed et fringilla eros. Fusce non auctor leo.' +
-                ' Nullam tristique facilisis tellus, non congue ante sodales ut.' +
-                ' Duis efficitur mauris porttitor pharetra tincidunt.' +
-                ' Aliquam laoreet id diam eget viverra.' +
-                ' Pellentesque habitant morbi tristique senectus et netus ' +
-                'et malesuada fames ac turpis egestas. Etiam luctus blandit interdum.'
-            }]
-        }]
-    };
+    let model = questsModel(req.db);
     if (user) {
-        // data = getInfo(req.commonData.user, req.params.name)
+        model
+            .getTitle(questName)
+            .then(getQuest)
+            .then(quest => {
+                console.log(quest);
+                let response = Object.assign(quest, commonData);
+                res.status(200).renderLayout('./pages/quest/quest.hbs', response);
+            })
     } else {
-        // data = questsModel.getQuest(questName);
+        model
+            .getTitle(questName)
+            .then(getQuest)
+            .getQuest(questName)
+            .then(quest => {
+                console.log(quest);
+                let response = Object.assign(quest, commonData);
+                res.status(200).renderLayout('./pages/quest/quest.hbs', response);
+            })
     }
-    res.status(200).renderLayout('./pages/quest/quest.hbs', Object.assign(data, commonData));
 };
 
 exports.likeQuest = (req, res) => {
@@ -98,8 +62,10 @@ exports.likeQuest = (req, res) => {
 };
 
 exports.addCommentToPlace = (req, res) => {
-    let questName = req.params.quest;
-    let placeName = req.params.place;
+    console.log(req.body);
+    let name = req.body.name.split('#');
+    let questName = name[0];
+    let placeName = name[1];
     debug(`add comment to ${questName} ${placeName}`);
     let author = req.commonData.user;
     let text = req.body.text;
@@ -115,7 +81,7 @@ exports.addCommentToPlace = (req, res) => {
 };
 
 exports.addCommentToQuest = (req, res) => {
-    let questName = req.params.name;
+    let questName = req.body.name;
     debug(`add comment to ${questName}`);
     let author = req.commonData.user;
     let text = req.body.text;

@@ -16,9 +16,9 @@ module.exports = function (app) {
     app.get('/reg', pages.reg);
     app.get('/get-more-quests', pages.index);
     app.get('/quest/:name', quests.quest);
-    app.post('/like-quest/:name', quests.likeQuest);
-    app.post('/place-comment/:quest/:place', quests.addCommentToPlace);
-    app.post('/quest-comment/:name', quests.addCommentToQuest);
+    app.post('/like-quest', quests.likeQuest);
+    app.post('/place-comment', quests.addCommentToPlace);
+    app.post('/quest-comment', quests.addCommentToQuest);
     app.get('/create-quest', pages.createQuest);
     app.post('/upload', upload.array, upload.cb);
     app.all('*', pages.error404);

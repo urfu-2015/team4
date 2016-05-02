@@ -1,10 +1,13 @@
 require('../../blocks/place/place.css');
+require('../../blocks/place/place.js');
 require('../../blocks/comments/comments.css');
+require('../../blocks/comments/comments.js');
 require('./quest.css');
 
-$('.panel.main').each(function () {
+
+$('.panel.main .panel-heading').each(function () {
     $(this).click(function () {
-        var last = $(this).children().last();
+        var last = $(this).next();
         if ($(last).css('display') === 'none') {
             $(last).css('display', 'block');
         } else {
@@ -14,16 +17,16 @@ $('.panel.main').each(function () {
 });
 
 $('#quest-like').change(function () {
-    var name = $('#quest-title').val();
+    var name = $('#quest-title').html();
     $.ajax({
         method: 'POST',
-        url: '/like-quest/' + name,
+        url: '/like-quest/',
         data: {
             name: name
         }
     })
-    .done(function (count) {
-        $('#likes-count').val = count;
+    .done(function (respond) {
+        $('#likes-count').html(respond.count);
     })
     .fail(function (msg) {
         console.log(msg);

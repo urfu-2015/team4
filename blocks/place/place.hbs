@@ -1,13 +1,15 @@
 <div class="row">
     <div class="place">
         <div class="thumbnail">
-            <img src={{photo}} alt={{title}}>
+            <img src={{img}} alt={{title}}>
             <div class="caption">
                 <h3 class="place-title">{{title}}</h3>
-                {{> comments/comments this}}
-                <p><a href="#" class="btn btn-primary" role="button">Button</a>
-                    <a href="#" class="btn btn-default" role="button">Button</a>
-                </p>
+                {{> comments/comments this place=true}}
+                {{#if inProgress}}
+                    {{#unless check-in}}
+                        <button class="btn btn-success check-in">Check-in</button>
+                    {{/unless}}
+                {{/if}}
             </div>
         </div>
     </div>

@@ -26,22 +26,22 @@ exports.quest = (req, res) => {
     if (user) {
         model
             .getTitle(questName)
-            .then(getQuest)
+            .then(model.getQuest)
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
-            })
+            });
     } else {
         model
             .getTitle(questName)
-            .then(getQuest)
+            .then(model.getQuest)
             .getQuest(questName)
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
-            })
+            });
     }
 };
 

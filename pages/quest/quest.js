@@ -4,7 +4,6 @@ require('../../blocks/comments/comments.css');
 require('../../blocks/comments/comments.js');
 require('./quest.css');
 
-
 $('.panel.main .panel-heading').each(function () {
     $(this).click(function () {
         var last = $(this).next();

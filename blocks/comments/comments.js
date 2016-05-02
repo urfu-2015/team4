@@ -8,14 +8,14 @@ $('.commentForm').each(function () {
         console.log(name);
 
         $.ajax({
-                method: 'POST',
-                url: url,
-                data: {
+            method: 'POST',
+            url: url,
+            data: {
                     name: name, text: text
                 }
-            })
+        })
             .done(function () {
-                aletr('success');
+                console.log('add comments');
             })
             .fail(function (msg) {
                 console.log(msg);
@@ -26,13 +26,10 @@ $('.commentForm').each(function () {
 $('.new-comment').each(function () {
     $(this).bind('input propertychange', function () {
         var form = $(this).parent();
-        if ($(this).val().length !== 0) {
-            form.find('[type="submit"]').prop('disabled', false);
-        } else {
+        if ($(this).val().length === 0) {
             form.find('[type="submit"]').prop('disabled', true);
+        } else {
+            form.find('[type="submit"]').prop('disabled', false);
         }
-    })
+    });
 });
-
-
-

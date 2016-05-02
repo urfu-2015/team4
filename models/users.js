@@ -87,10 +87,10 @@ function isNameExist(newName) {
             if (err) {
                 reject(errors.mongoError);
             } else if (result.length) {
-                    reject(errors.nameExist);
-                } else {
-                    resolve();
-                }
+                reject(errors.nameExist);
+            } else {
+                resolve();
+            }
         });
     });
 }

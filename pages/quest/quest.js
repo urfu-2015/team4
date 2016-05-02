@@ -1,3 +1,4 @@
+'use strict';
 require('../../blocks/place/place.css');
 require('../../blocks/place/place.js');
 require('../../blocks/comments/comments.css');

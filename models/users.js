@@ -29,16 +29,20 @@ function getHash(password) {
 
 const login = user => {
     user.password = getHash(user.password);
-    return usersCollection.find(user).toArray()
-        .then(result => {
-            if (result.length) {
-                return result[0];
+    return usersCollection
+        .find(user)
+        .toArray()
+        .then(
+            result => {
+                if (result.length) {
+                    return result[0];
+                }
+                throw errors.wrongData;
+            },
+            () => {
+                throw errors.mongoError;
             }
-            throw errors.wrongData;
-        },
-        () => {
-            throw errors.mongoError;
-        });
+        );
 };
 
 const addUser = newUser => {

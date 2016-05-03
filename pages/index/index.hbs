@@ -1,26 +1,15 @@
-{{#extend "base"}}
-    {{#content "title"}}
-        <title>Фотоквесты</title>
-    {{/content}}
-
-    {{#content "styles"}}
-        <link rel="stylesheet" href="/index.css">
-    {{/content}}
-
-    {{#content "main"}}
-        <div id="listOfQuests" class="main-content">
-            {{#each quests}}
-                <div class="quest">
-                    <div class="quest-name">
-                        <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
-                    </div>
-                    <img class="quest-img img-rounded" src={{photo}}>
-                </div>
-            {{/each}}
+{{> layout/layout_top title="Фотоквесты by Team4" link-css="/index.css"}}
+{{> header/header }}
+<div id="list-of-quests" class="main_content">
+    {{#each quests}}
+        <div class="quest">
+            <div class="quest_name">
+                <p class="quest_name_a"><a href={{url}}>{{title}}</a></p>
+            </div>
+            <img class="quest_img img-rounded" src={{photo}}>
         </div>
-    {{/content}}
-
-    {{#content "scripts"}}
-        <script src="/index.js"></script>
-    {{/content}}
-{{/extend}}
+    {{/each}}
+</div>
+{{> button/button id="getMore" text="Загрузить еще"}}
+{{> footer/footer }}
+{{> layout/layout_top link-js="/index.js"}}

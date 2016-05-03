@@ -70,7 +70,7 @@ function getQuestsInProgress(name) {
            if (user.length) {
                return user[0].inProgressQuests;
            }
-           return [];
+           throw new Error('Пользователь не найден');
        });
 }
 
@@ -81,7 +81,7 @@ function getFinishedQuests(name) {
             if (user.length) {
                 return user[0].finishedQuests;
             }
-            return [];
+            throw new Error('Пользователь не найден');
         });
 }
 

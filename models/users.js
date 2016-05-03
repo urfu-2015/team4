@@ -66,7 +66,7 @@ function removeQuestInProgress(name, title) {
 function getQuestsInProgress(name) {
     return usersCollection.find({name})
        .toArray()
-       .then(user => user.inProgressQuests);
+       .then(user => user[0].inProgressQuests);
 }
 
 function getFinishedQuests(name) {

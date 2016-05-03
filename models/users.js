@@ -29,18 +29,20 @@ function getHash(password) {
 
 const login = user => {
     user.password = getHash(user.password);
-    return usersCollection.find(user).toArray()
-            .then(
-                result => {
-                    if (result.length) {
-                        return result[0];
-                    }
-                    throw errors.wrongData;
-                },
-    () => {
-        throw errors.mongoError;
-    }
-);
+    return usersCollection
+        .find(user)
+        .toArray()
+        .then(
+            result => {
+                if (result.length) {
+                    return result[0];
+                }
+                throw errors.wrongData;
+            },
+            () => {
+                throw errors.mongoError;
+            }
+        );
 };
 
 const addUser = newUser => {
@@ -64,7 +66,7 @@ function removeQuestInProgress(name, title) {
 function getQuestsInProgress(name) {
     return usersCollection.find({name})
        .toArray()
-       .then(user => user[0].inProgressQuests);
+       .then(user => user.inProgressQuests);
 }
 
 function getFinishedQuests(name) {

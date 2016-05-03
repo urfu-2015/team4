@@ -1,24 +1,10 @@
-{{#extend "base"}}
-    {{#content "title"}}
-        <title>Не найдено</title>
-    {{/content}}
-
-    {{#content "styles"}}
-        <link rel="stylesheet" href="/notFound.css">
-    {{/content}}
-
-    {{#content "main"}}
-        <div class="main-div">
-            <img src="http://iconspot.ru/image.php?width=512&height=512&crop=none&id=7196">
-            <div>
-                <p>
-                    Ой, ничего нет. Но <a href='/'>здесь</a> есть много интересного.
-                </p>
-            </div>
-        </div>
-    {{/content}}
-
-    {{#content "scripts"}}
-        <script src="/notFound.js"></script>
-    {{/content}}
-{{/extend }}
+{{> layout/layout_top title="Не найдено" link-css="/notFound.css"}}
+{{> header/header }}
+<div class="main_div">
+    <img src="http://iconspot.ru/image.php?width=512&height=512&crop=none&id=7196">
+    <div class="main_div_message">
+        <p>Ой, ничего нет. Но </p><a href='/'>здесь</a><p> есть много интересного.</p>
+    </div>
+</div>
+{{> footer/footer }}
+{{> layout/layout_top link-js="/notFound.js"}}

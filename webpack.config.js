@@ -11,6 +11,7 @@ module.exports = {
         index: './index/index.js',
         authorization: './authorization/authorization.js',
         registration: './registration/registration.js',
+        quest: './quest/quest.js',
         userPage: './userPage/userPage.js',
         createQuest: './createQuest/createQuest.js',
         notFound: './notFound/notFound.js'

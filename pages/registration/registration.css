@@ -16,8 +16,8 @@
 }
 
 .form a,
-a:hover,
-a:focus
+.form a:hover,
+.form a:focus
 {
     color: #19b9e7;
     text-decoration: none;
@@ -29,7 +29,7 @@ a:focus
 }
 
 .form h1,
-h2
+.form h2
 {
     margin-top: 10px;
     font-size: 38px;
@@ -68,8 +68,8 @@ h2
 }
 
 .form .btn-link-1:hover,
-.btn-link-1:focus,
-.btn-link-1:active
+.form .btn-link-1:focus,
+.form .btn-link-1:active
 {
     outline: 0;
     opacity: 0.6;
@@ -117,9 +117,9 @@ h2
 }
 
 .form .btn-link-2:hover,
-.btn-link-2:focus,
+.form .btn-link-2:focus,
 .form .btn-link-2:active,
-.btn-link-2:active:focus
+.form .btn-link-2:active:focus
 {
     outline: 0;
     opacity: 0.6;
@@ -187,7 +187,7 @@ h2
     text-align: right;
 }
 
-.form-bottom
+.form .form-bottom
 {
     background: #eee;
     -moz-border-radius: 0 0 4px 4px;
@@ -197,42 +197,42 @@ h2
     padding: 25px 25px 30px;
 }
 
-.form-bottom form textarea
+.form .form-bottom form textarea
 {
     height: 100px;
 }
 
-.form-bottom form button.btn
+.form .form-bottom form button.btn
 {
     width: 100%;
 }
 
-.form-bottom form .input-error
+.form .form-bottom form .input-error
 {
     border-color: #19b9e7;
 }
 
-.social-login
+.form .social-login
 {
     margin-top: 35px;
 }
 
-.social-login-buttons
+.form .social-login-buttons
 {
     margin-top: 25px;
 }
 
-.middle-border
+.form .middle-border
 {
     min-height: 300px;
     margin-top: 170px;
     border-right: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-input[type="text"],
-input[type="password"],
-textarea,
-textarea.form-control
+.form input[type="text"],
+.form input[type="password"],
+.form textarea,
+.form textarea.form-control
 {
     height: 50px;
     vertical-align: middle;
@@ -258,18 +258,18 @@ textarea.form-control
     padding: 0 20px;
 }
 
-textarea,
-textarea.form-control
+.form textarea,
+.form textarea.form-control
 {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 30px;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-textarea:focus,
-textarea.form-control:focus
+.form input[type="text"]:focus,
+.form input[type="password"]:focus,
+.form textarea:focus,
+.form textarea.form-control:focus
 {
     outline: 0;
     background: #fff;
@@ -279,7 +279,7 @@ textarea.form-control:focus
     box-shadow: none;
 }
 
-button.btn
+.form button.btn
 {
     height: 50px;
     vertical-align: middle;
@@ -306,13 +306,13 @@ button.btn
     padding: 0 20px;
 }
 
-button.btn:hover
+.form button.btn:hover
 {
     opacity: 0.6;
     color: #fff;
 }
 
-button.btn:active
+.form button.btn:active
 {
     outline: 0;
     opacity: 0.6;
@@ -330,25 +330,25 @@ button.btn:active
     color: #fff;
 }
 
-input[type="text"]:-moz-placeholder,
-input[type="password"]:-moz-placeholder,
-textarea:-moz-placeholder,
-textarea.form-control:-moz-placeholder,
-input[type="text"]:-ms-input-placeholder,
-input[type="password"]:-ms-input-placeholder,
-textarea:-ms-input-placeholder,
-textarea.form-control:-ms-input-placeholder,
-input[type="text"]::-webkit-input-placeholder,
-input[type="password"]::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder,
-textarea.form-control::-webkit-input-placeholder
+.form input[type="text"]:-moz-placeholder,
+.form input[type="password"]:-moz-placeholder,
+.form textarea:-moz-placeholder,
+.form textarea.form-control:-moz-placeholder,
+.form input[type="text"]:-ms-input-placeholder,
+.form input[type="password"]:-ms-input-placeholder,
+.form textarea:-ms-input-placeholder,
+.form textarea.form-control:-ms-input-placeholder,
+.form input[type="text"]::-webkit-input-placeholder,
+.form input[type="password"]::-webkit-input-placeholder,
+.form textarea::-webkit-input-placeholder,
+.form textarea.form-control::-webkit-input-placeholder
 {
     color: #888;
 }
 
-button.btn:focus,
-button.btn:active:focus,
-button.btn.active:focus
+.form button.btn:focus,
+.form button.btn:active:focus,
+.form button.btn.active:focus
 {
     outline: 0;
     opacity: 0.6;

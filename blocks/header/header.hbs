@@ -1,20 +1,24 @@
-<header>
-    <div class="header-title">
-        <a href="/">ФотоКвесты by Team4</a>
-    </div>
-    <div>
-        <div>
+<header class="page-header">
+
+    <div class="header-limiter">
+
+        <h1><a href="/">ФотоКвесты by <span>Team4</span></a></h1>
+
+        <form method="get" action="#">
+            <input type="search" placeholder="Поиск квеста!" name="search">
+            <button type="submit" class="search-btn"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+
+        <ul>
             {{#if commonData.user}}
-                <a class="header-links-a logout" href="">Выход</a>
-                <a class="header-links-a" href="">Создать квест</a>
+                <li><a href="/create-quest">Создать квест</a></li>
+                <li><a id="logout" href="#">Выход</a></li>
             {{else}}
-                <a class="header-links-a" href="/auth">Вход</a>
-                <a class="header-links-a" href="/reg">Регистрация</a>
+                <li><a class="" href="/auth">Вход</a></li>
+                <li><a class="header-links-a" href="/reg">Регистрация</a></li>
             {{/if}}
-        </div>
-        <div class="header-search">
-            <input type="search" placeholder="Поиск квеста">
-            <input type="button" value="Найти">
-        </div>
+        </ul>
+
     </div>
+
 </header>

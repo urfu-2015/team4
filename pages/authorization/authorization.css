@@ -1,11 +1,365 @@
-.form-of-authorization
+.form
 {
-    width: 480px;
-    margin: 100px auto;
-    padding: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+    width: 40%;
+    margin: auto;
 }
 
-.link-for-checkIn
+.form strong
 {
-    float: right;
+    font-weight: 500;
+}
+
+.form a,
+a:hover,
+a:focus
+{
+    color: #19b9e7;
+    text-decoration: none;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.form h1,
+h2
+{
+    margin-top: 10px;
+    font-size: 38px;
+    font-weight: 100;
+    color: #555;
+    line-height: 50px;
+}
+
+.form h3
+{
+    font-size: 22px;
+    font-weight: 300;
+    color: #555;
+    line-height: 30px;
+}
+
+.form img
+{
+    max-width: 100%;
+}
+
+.form .btn-link-1
+{
+    display: inline-block;
+    height: 50px;
+    background: #19b9e7;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+    color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 16px 20px 0;
+}
+
+.form .btn-link-1:hover,
+.btn-link-1:focus,
+.btn-link-1:active
+{
+    outline: 0;
+    opacity: 0.6;
+    color: #fff;
+}
+
+.form .btn-link-1.btn-link-1-facebook
+{
+    background: #4862a3;
+}
+
+.form .btn-link-1.btn-link-1-twitter
+{
+    background: #55acee;
+}
+
+.form .btn-link-1.btn-link-1-google-plus
+{
+    background: #dd4b39;
+}
+
+.form .btn-link-1 i
+{
+    padding-right: 5px;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.form .btn-link-2
+{
+    display: inline-block;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #fff;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+    color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 15px 20px 0;
+}
+
+.form .btn-link-2:hover,
+.btn-link-2:focus,
+.form .btn-link-2:active,
+.btn-link-2:active:focus
+{
+    outline: 0;
+    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+.form .inner-bg
+{
+    padding: 60px 0 80px;
+}
+
+.form .top-content .description
+{
+    margin: 20px 0 10px;
+}
+
+.form .top-content .description p
+{
+    opacity: 0.8;
+}
+
+.form .top-content .description a:hover,
+.form .top-content .description a:focus
+{
+    border-bottom: 1px dotted #fff;
+}
+
+.form .form-box
+{
+    margin-top: 70px;
+}
+
+.form .form-top
+{
+    overflow: hidden;
+    background: #fff;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    text-align: left;
+    padding: 0 25px 15px;
+}
+
+.form .form-top-left
+{
+    float: left;
+    width: 75%;
+    padding-top: 25px;
+}
+
+.form .form-top-left h3
+{
+    margin-top: 0;
+}
+
+.form .form-top-right
+{
+    float: left;
+    width: 25%;
+    padding-top: 5px;
+    font-size: 66px;
+    color: #ddd;
+    line-height: 100px;
+    text-align: right;
+}
+
+.form-bottom
+{
+    background: #eee;
+    -moz-border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+    text-align: left;
+    padding: 25px 25px 30px;
+}
+
+.form-bottom form textarea
+{
+    height: 100px;
+}
+
+.form-bottom form button.btn
+{
+    width: 100%;
+}
+
+.form-bottom form .input-error
+{
+    border-color: #19b9e7;
+}
+
+.social-login
+{
+    margin-top: 35px;
+}
+
+.social-login-buttons
+{
+    margin-top: 25px;
+}
+
+.middle-border
+{
+    min-height: 300px;
+    margin-top: 170px;
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+textarea.form-control
+{
+    height: 50px;
+    vertical-align: middle;
+    background: #f8f8f8;
+    border: 3px solid #ddd;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #888;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 0;
+    padding: 0 20px;
+}
+
+textarea,
+textarea.form-control
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 30px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+textarea.form-control:focus
+{
+    outline: 0;
+    background: #fff;
+    border: 3px solid #ccc;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+button.btn
+{
+    height: 50px;
+    vertical-align: middle;
+    background: #19b9e7;
+    border: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 0;
+    padding: 0 20px;
+}
+
+button.btn:hover
+{
+    opacity: 0.6;
+    color: #fff;
+}
+
+button.btn:active
+{
+    outline: 0;
+    opacity: 0.6;
+    color: #fff;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form .top-content .text,
+.form .top-content .text h1,
+.form .top-content .description a,
+.social-login h3
+{
+    color: #fff;
+}
+
+input[type="text"]:-moz-placeholder,
+input[type="password"]:-moz-placeholder,
+textarea:-moz-placeholder,
+textarea.form-control:-moz-placeholder,
+input[type="text"]:-ms-input-placeholder,
+input[type="password"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder,
+textarea.form-control:-ms-input-placeholder,
+input[type="text"]::-webkit-input-placeholder,
+input[type="password"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea.form-control::-webkit-input-placeholder
+{
+    color: #888;
+}
+
+button.btn:focus,
+button.btn:active:focus,
+button.btn.active:focus
+{
+    outline: 0;
+    opacity: 0.6;
+    background: #19b9e7;
+    color: #fff;
+}
+
+@media all and (max-width: 900px), only screen and (max-device-width: 480px)
+{
+    .form
+    {
+        width: 80%;
+    }
 }

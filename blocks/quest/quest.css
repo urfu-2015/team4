@@ -1,0 +1,26 @@
+.quest
+{
+    width: 100%;
+}
+
+.quest-name-a
+{
+    font-size: 80px;
+}
+
+.quest-img
+{
+    width: 100%;
+    margin: 10px;
+}
+
+.quest-name
+{
+    margin: 10px;
+}
+
+p,
+a
+{
+    font-size: 40px;
+}

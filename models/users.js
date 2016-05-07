@@ -69,8 +69,9 @@ function isNameExist(newName) {
 }
 
 const operations = {
-    addUser: newUser => addUser(newUser),
-    login: user => login(user)
+    addUser,
+    login,
+    isNameExist
 };
 
 module.exports = db => {

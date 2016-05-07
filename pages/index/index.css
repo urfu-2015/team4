@@ -3,23 +3,7 @@
     text-align: center;
 }
 
-.quest-img
-{
-    width: 100%;
-    margin: 10px;
-}
-
-.quest-name
-{
-    margin: 10px;
-}
-
 p
 {
     overflow: hidden;
-}
-
-.quest-name-a
-{
-    font-size: 80px;
 }

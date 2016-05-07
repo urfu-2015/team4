@@ -1,4 +1,4 @@
-{{#exnteds "base"}}
+{{#extend "base"}}
     {{#content "title"}}
         <title>Фотоквесты</title>
     {{/content}}
@@ -10,12 +10,7 @@
     {{#content "main"}}
         <div id="listOfQuests" class="main-content">
             {{#each quests}}
-                <div class="quest">
-                    <div class="quest-name">
-                        <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
-                    </div>
-                    <img class="quest-img img-rounded" src={{photo}}>
-                </div>
+                {{> quest/quest}}
             {{/each}}
         </div>
     {{/content}}
@@ -23,4 +18,4 @@
     {{#content "scripts"}}
         <script src="/index.js"></script>
     {{/content}}
-{{/exnteds}}
+{{/extend}}

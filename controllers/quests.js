@@ -31,17 +31,18 @@ exports.quest = (req, res) => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
-            });
+            })
+            .catch(err => res.error(err));
     } else {
         model
             .getTitle(questName)
             .then(model.getQuest)
-            .getQuest(questName)
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
-            });
+            })
+            .catch(err => res.error(err));
     }
 };
 

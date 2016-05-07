@@ -24,6 +24,8 @@ module.exports.register = (req, res) => {
     let password = req.body.password;
     users.addUser({name, email, password}).then(
         () => {
+            let userId = hash.create(name, salt);
+            res.cookie('id', userId, {maxAge: 60 * 24 * 60 * 1000});
             res.status(200).send('Registration was successfull');
         },
         error => {
@@ -40,7 +42,7 @@ module.exports.login = (req, res) => {
     users.login({email, password}).then(
         result => {
             let userId = hash.create(result.name, salt);
-            res.cookie('id', userId, {maxAge: 1000000});
+            res.cookie('id', userId, {maxAge: 60 * 24 * 60 * 1000});
             res.status(200).send('Successfully logged in');
         },
         error => {
@@ -51,10 +53,6 @@ module.exports.login = (req, res) => {
 
 module.exports.validate = (req, res, next) => {
     debug('validate');
-    if (!req.body.password) {
-        res.status(400).send({message: 'Password is required', status: 'Error'});
-        return;
-    }
     if (!req.body.email) {
         res.status(400).send({message: 'Email is required', status: 'Error'});
         return;
@@ -62,6 +60,10 @@ module.exports.validate = (req, res, next) => {
     req.body.email = req.body.email.trim();
     if (!validator.isEmail(req.body.email)) {
         res.status(400).send({message: 'Email is not valid', status: 'Error'});
+        return;
+    }
+    if (!req.body.password) {
+        res.status(400).send({message: 'Password is required', status: 'Error'});
         return;
     }
     if (req.body.password.length > 30) {

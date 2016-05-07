@@ -29,7 +29,9 @@ function getHash(password) {
 
 const login = user => {
     user.password = getHash(user.password);
-    return usersCollection.find(user).toArray()
+    return usersCollection
+        .find(user)
+        .toArray()
         .then(
             result => {
                 if (result.length) {
@@ -44,17 +46,52 @@ const login = user => {
 };
 
 const addUser = newUser => {
-    return isNameExist(newUser.name)
-        .then(
-            () => {
-                newUser.password = getHash(newUser.password);
-                newUser.quests = [];
-                return usersCollection.insertOne(newUser);
-            }
-        );
+    return isNameAvalible(newUser.name)
+        .then(() => {
+            newUser.password = getHash(newUser.password);
+            newUser.finishedQuests = [];
+            newUser.inProgressQuests = [];
+            return usersCollection.insertOne(newUser);
+        });
 };
 
-function isNameExist(newName) {
+function addQuestInProgress(name, title) {
+    return usersCollection.update({name}, {$push: {inProgressQuests: title}});
+}
+
+function removeQuestInProgress(name, title) {
+    return usersCollection.update({name}, {$pull: {inProgressQuests: title}});
+}
+
+function getQuestsInProgress(name) {
+    return usersCollection.find({name})
+       .toArray()
+       .then(user => {
+           if (user.length) {
+               return user[0].inProgressQuests;
+           }
+           throw new Error('Пользователь не найден');
+       });
+}
+
+function getFinishedQuests(name) {
+    return usersCollection.find({name})
+        .toArray()
+        .then(user => {
+            if (user.length) {
+                return user[0].finishedQuests;
+            }
+            throw new Error('Пользователь не найден');
+        });
+}
+
+function questFinish(name, title) {
+    return usersCollection.update({name},
+        {$pull: {inProgressQuests: title}},
+        {$push: {finishedQuests: title}});
+}
+
+function isNameAvalible(newName) {
     return new Promise((resolve, reject) => {
         usersCollection.find({name: newName}).toArray((err, result) => {
             if (err) {
@@ -68,10 +105,22 @@ function isNameExist(newName) {
     });
 }
 
+function isUserExist(user) {
+    return usersCollection
+        .find({user})
+        .toArray()
+        .then(users => users.length);
+}
+
 const operations = {
     addUser,
     login,
-    isNameExist
+    addQuestInProgress,
+    removeQuestInProgress,
+    questFinish,
+    getQuestsInProgress,
+    getFinishedQuests,
+    isUserExist
 };
 
 module.exports = db => {

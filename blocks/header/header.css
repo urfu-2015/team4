@@ -1,16 +1,187 @@
-.header-title
+.page-header
 {
-    font-size: 50px;
+    background-color: #292c2f;
+    box-shadow: 0 1px 1px #ccc;
+    padding: 25px 40px;
+    height: 90px;
+    color: #fff;
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+.page-header .header-limiter
+{
+    max-width: 1200px;
     text-align: center;
+    margin: 0 auto;
 }
 
-.header-links-a
+/* Logo */
+
+.header-limiter h1
 {
-    font-size: 40px;
-    margin-right: 5px;
+    float: left;
+    font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    margin: 0;
 }
 
-.header-search
+.header-limiter h1 span
 {
-    font-size: 30px;
+    color: #5383d3;
+}
+
+.header-limiter a
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-limiter nav a
+{
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 5px;
+    opacity: 0.9;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.header-limiter nav a:hover
+{
+    opacity: 1;
+}
+
+.header-limiter nav a.selected
+{
+    color: #608bd2;
+}
+
+.header-limiter ul
+{
+    font: 14px Arial, Helvetica, sans-serif;
+    list-style: none;
+    line-height: 1;
+    float: right;
+    line-height: 40px;
+}
+
+.header-limiter ul li
+{
+    display: inline-block;
+    margin-left: 15px;
+    opacity: 0.9;
+}
+
+.header-limiter ul li:hover
+{
+    opacity: 1;
+}
+
+/* The sign up button */
+.header-limiter ul li:first-child a
+{
+    font-weight: bold;
+    background-color: #3a3c3e;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.header-limiter form
+{
+    float: left;
+    margin-left: 40px;
+    border-radius: 3px;
+    background-color: #3a3c3e;
+    height: 40px;
+    cursor: pointer;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.search-btn
+{
+    display: inline-block;
+    height: 40px;
+    width: 36px;
+    background-color: #3a3c3e;
+    border: none;
+}
+
+.header-limiter form input
+{
+    padding: 11px 12px 9px;
+    color: #181818;
+    border: none;
+    width: 210px;
+    border-radius: 2px 0 0 2px;
+    height: 39px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.header-limiter .search
+{
+    display: inline-block;
+    float: left;
+}
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px), only screen and (max-device-width: 480px)
+{
+
+    .page-header
+    {
+        height: 150px;
+        padding: 30px 40px;
+    }
+
+    .page-header .header-limiter
+    {
+        max-width: 100%;
+    }
+
+    .header-limiter ul
+    {
+        float: none;
+        position: fixed;
+        top: 30px;
+        right: 20px;
+        font-size: 25px;
+    }
+
+    .header-limiter input
+    {
+        font-size: 20px;
+    }
+
+    .header-limiter ul li
+    {
+        display: block;
+    }
+
+    .header-limiter ul li:last-child
+    {
+        margin-top: 10px;
+    }
+
+    .header-limiter h1
+    {
+        float: none;
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .header-limiter form
+    {
+        float: none;
+        margin: auto;
+        width: 254px;
+        margin-top: 10px;
+    }
 }

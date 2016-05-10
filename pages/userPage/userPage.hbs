@@ -13,14 +13,20 @@
                 <div>
                     {{username}}
                 </div>
-                <div id="finishedQuests" class="main-content">
-                    <div>
-                        <p>Завершенные</p>
+                <div id="finishedQuests" class="main-content quest-block ">
+                    <div class="block-header">
+                        Завершенные
                     </div>
                     {{#if finished}}
                         {{#each finished}}
-
-                            {{> quest/quest}}
+                            <div class="quest">
+                                <div class="quest-name">
+                                    <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
+                                </div>
+                                {{#if photo}}
+                                    <img class="quest-img img-rounded" src={{photo}}>
+                                {{/if}}
+                            </div>
                         {{/each}}
                     {{else}}
                         <div>
@@ -29,13 +35,20 @@
                     {{/if}}
 
                 </div>
-                <div id="inProcessQuests" class="main-content">
-                    <div>
-                        <p>В процессе</p>
+                <div id="" class="main-content quest-block">
+                    <div class="block-header">
+                        В процессе
                     </div>
                     {{#if inProcess}}
                         {{#each inProcess}}
-                            {{> quest/quest}}
+                            <div class="quest">
+                                <div class="quest-name">
+                                    <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
+                                </div>
+                                {{#if photo}}
+                                    <img class="quest-img img-rounded" src={{photo}}>
+                                {{/if}}
+                            </div>
                         {{/each}}
                     {{else}}
                         <div>

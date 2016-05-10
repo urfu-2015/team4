@@ -1,1 +1,0 @@
-require('./quest.css');

@@ -10,7 +10,15 @@
     {{#content "main"}}
         <div id="listOfQuests" class="main-content">
             {{#each quests}}
-                {{> quest/quest}}
+                <div class="quest">
+                    <div class="quest-name">
+                        <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
+                    </div>
+                    {{#if photo}}
+                        <img class="quest-img img-rounded" src={{photo}}>
+                    {{/if}}
+                </div>
+
             {{/each}}
         </div>
     {{/content}}

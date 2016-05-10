@@ -63,11 +63,10 @@ exports.likeQuest = (req, res) => {
 };
 
 exports.addCommentToPlace = (req, res) => {
-    console.log(req.body);
     let name = req.body.name.split('#');
     let questName = name[0];
     let placeName = name[1];
-    debug(`add comment to ${questName} ${placeName}`);
+    debug(`add comment to place ${questName}/${placeName}`);
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
@@ -78,12 +77,12 @@ exports.addCommentToPlace = (req, res) => {
     let comment = {author, text};
     model
         .addCommentToPlace(questName, placeName, comment)
-        .then(() => res.status(200));
+        .then(() => res.status(200).send(comment));
 };
 
 exports.addCommentToQuest = (req, res) => {
     let questName = req.body.name;
-    debug(`add comment to ${questName}`);
+    debug(`add comment to quest ${questName}`);
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
@@ -94,5 +93,5 @@ exports.addCommentToQuest = (req, res) => {
     let comment = {author, text};
     model
         .addCommentToQuest(questName, comment)
-        .then(() => res.status(200));
+        .then(() => res.status(200).send(comment));
 };

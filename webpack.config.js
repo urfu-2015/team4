@@ -28,6 +28,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            },
+            {
+                test: /\.jpe?g$|\.gif$|\.png$/i,
+                loader: 'file-loader'
             }
         ]
     },

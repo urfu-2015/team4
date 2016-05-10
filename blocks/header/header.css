@@ -1,187 +1,246 @@
-.page-header
+header
 {
-    background-color: #292c2f;
-    box-shadow: 0 1px 1px #ccc;
-    padding: 25px 40px;
-    height: 90px;
-    color: #fff;
-    box-sizing: border-box;
-    margin-top: 0;
+    background: rgba(255,255,255,0.5);
 }
 
-.page-header .header-limiter
+header form
 {
-    max-width: 1200px;
-    text-align: center;
-    margin: 0 auto;
-}
-
-/* Logo */
-
-.header-limiter h1
-{
-    float: left;
-    font: normal 28px Cookie, Arial, Helvetica, sans-serif;
-    line-height: 40px;
-    margin: 0;
-}
-
-.header-limiter h1 span
-{
-    color: #5383d3;
-}
-
-.header-limiter a
-{
-    color: #fff;
-    text-decoration: none;
-}
-
-.header-limiter nav a
-{
-    font-size: 14px;
-    display: inline-block;
-    padding: 0 5px;
-    opacity: 0.9;
-    text-decoration: none;
-    line-height: 1;
-}
-
-.header-limiter nav a:hover
-{
-    opacity: 1;
-}
-
-.header-limiter nav a.selected
-{
-    color: #608bd2;
-}
-
-.header-limiter ul
-{
-    font: 14px Arial, Helvetica, sans-serif;
-    list-style: none;
-    line-height: 1;
-    float: right;
-    line-height: 40px;
-}
-
-.header-limiter ul li
-{
-    display: inline-block;
-    margin-left: 15px;
-    opacity: 0.9;
-}
-
-.header-limiter ul li:hover
-{
-    opacity: 1;
-}
-
-/* The sign up button */
-.header-limiter ul li:first-child a
-{
-    font-weight: bold;
-    background-color: #3a3c3e;
-    padding: 10px 15px;
-    border-radius: 3px;
-}
-
-.header-limiter form
-{
-    float: left;
-    margin-left: 40px;
-    border-radius: 3px;
-    background-color: #3a3c3e;
-    height: 40px;
+    width: 250px;
+    display: flex;
+    height: 42px;
     cursor: pointer;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+    margin: 30px 0 10px 15px;
+    margin-left: 15px;
+    border: 1px solid;
 }
 
 .search-btn
 {
-    display: inline-block;
     height: 40px;
-    width: 36px;
-    background-color: #3a3c3e;
+    width: 40px;
     border: none;
+    background-color: #5cb85c;
 }
 
-.header-limiter form input
+header .glyphicon
+{
+    color: #fff;
+}
+
+header form input
 {
     padding: 11px 12px 9px;
     color: #181818;
-    border: none;
     width: 210px;
-    border-radius: 2px 0 0 2px;
-    height: 39px;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.header-limiter .search
-{
-    display: inline-block;
-    float: left;
+    height: 40px;
+    border: none;
 }
 
 /* Making the header responsive */
 
-@media all and (max-width: 600px), only screen and (max-device-width: 480px)
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
 {
+    text-transform: uppercase;
+    font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-    .page-header
+header .navbar-nav > li > a
+{
+    color: #286090;
+}
+
+header .navbar-brand
+{
+    color: #2e6da4;
+}
+
+p
+{
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: #000;
+}
+
+hr
+{
+    max-width: 400px;
+    border-color: #999999;
+}
+
+.brand,
+.address-bar
+{
+    display: none;
+}
+
+.navbar-brand
+{
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.navbar-nav
+{
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.img-full
+{
+    min-width: 100%;
+}
+
+.brand-before,
+.brand-name
+{
+    text-transform: capitalize;
+}
+
+.brand-before
+{
+    margin: 15px 0;
+}
+
+.brand-name
+{
+    margin: 0;
+    font-size: 4em;
+}
+
+.tagline-divider
+{
+    margin: 15px auto 3px;
+    max-width: 250px;
+    border-color: #999999;
+}
+
+.box
+{
+    margin-bottom: 20px;
+    padding: 30px 15px;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+.intro-text
+{
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.img-border
+{
+    float: none;
+    margin: 0 auto 0;
+    border: #999999 solid 1px;
+}
+
+.img-left
+{
+    float: none;
+    margin: 0 auto 0;
+}
+
+footer
+{
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+footer p
+{
+    margin: 0;
+    padding: 50px 0;
+}
+
+@media screen and (min-width:768px)
+{
+    .brand
     {
-        height: 150px;
-        padding: 30px 40px;
+        display: inherit;
+        margin: 0;
+        padding: 30px 0 10px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 5em;
+        font-weight: 700;
+        line-height: normal;
+        color: #337ab7;
     }
 
-    .page-header .header-limiter
+    .top-divider
     {
-        max-width: 100%;
+        margin-top: 0;
     }
 
-    .header-limiter ul
+    .img-left
     {
+        float: left;
+        margin-right: 25px;
+    }
+
+    .navbar
+    {
+        border-radius: 0;
+    }
+
+    .navbar-header
+    {
+        display: none;
+    }
+
+    .navbar
+    {
+        min-height: 0;
+    }
+
+    .navbar-default
+    {
+        border: none;
+        background: #fff;
+        background: rgba(255,255,255,0.4);
+    }
+
+    .nav > li > a
+    {
+        padding: 35px;
+    }
+
+    .navbar-nav > li > a
+    {
+        line-height: normal;
+    }
+
+    .navbar-nav
+    {
+        display: table;
         float: none;
-        position: fixed;
-        top: 30px;
-        right: 20px;
-        font-size: 25px;
-    }
-
-    .header-limiter input
-    {
-        font-size: 20px;
-    }
-
-    .header-limiter ul li
-    {
-        display: block;
-    }
-
-    .header-limiter ul li:last-child
-    {
-        margin-top: 10px;
-    }
-
-    .header-limiter h1
-    {
-        float: none;
-        font-size: 40px;
-        line-height: 40px;
-    }
-
-    .header-limiter form
-    {
-        float: none;
-        margin: auto;
-        width: 254px;
-        margin-top: 10px;
+        margin: 0 auto;
+        table-layout: fixed;
+        font-size: 1.25em;
     }
 }
+
+@media screen and (min-width:1200px)
+{
+    .box:after
+    {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+

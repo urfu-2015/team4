@@ -47,43 +47,33 @@ exports.userPage = (req, res) => {
         commonData: req.commonData
     };
     users.isUserExist(req.params.name)
-        .then((users) => {
+        .then(users => {
             if (users > 0) {
                 return req.params.name;
-            } else {
-                res.renderLayout('./pages/notFound/notFound.hbs',
-                    {commonData: req.commonData});
-                throw Error('no user');
             }
+            res.renderLayout('./pages/notFound/notFound.hbs',
+                {commonData: req.commonData});
+            throw Error('no user');
         })
         .then(users.getFinishedQuests)
-        .then((finished) => {
+        .then(finished => {
             if (finished.length !== 0) {
-                Object.assign(response, {finished:finished})
+                Object.assign(response, {finished: finished});
             }
             return req.params.name;
         })
         .then(users.getQuestsInProgress)
-        .then((inProcess) => {
-            inProcess = [
-                {title:'Harold 1', photo:'http://i.imgur.com/LbDUJDk.jpg',url:'/'},
-                {title:'Harold 2', photo:'http://www.netlore.ru/upload/files/68338/large_p19d7nh1hm1i37tnuim11ebqo5c1.jpg',url:'/'},
-                {title:'Harold 3', photo:'http://i.imgur.com/WE8DG5F.jpg',url:'/'},
-                {title:'Harold 4', photo:'http://cs631327.vk.me/v631327103/19a66/VNzIvlvv2Ss.jpg',url:'/'},
-                {title:'Harold 5', photo:'http://ci.memecdn.com/108/5904108.jpg',url:'/'}
-            ];
+        .then(inProcess => {
             if (inProcess.length !== 0) {
-                Object.assign(response, {inProcess:inProcess});
+                Object.assign(response, {inProcess: inProcess});
             }
-            console.log(req.params.name, response.commonData.user)
-            if (req.params.name == response.commonData.user) {
+            if (req.params.name === response.commonData.user) {
                 Object.assign(response, {self: true});
             }
             console.log(response);
             res.renderLayout('./pages/userPage/userPage.hbs', response);
         });
 };
-
 
 exports.auth = (req, res) => {
     debug('auth');

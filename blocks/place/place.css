@@ -17,5 +17,19 @@
     .place
     {
         width: 100%;
+        margin: 10px 0;
+    }
+    .row
+    {
+        margin: 10px 0;
+    }
+    .thumbnail
+    {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .thumbnail .caption
+    {
+        padding: 0;
     }
 }

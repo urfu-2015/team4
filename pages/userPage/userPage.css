@@ -1,12 +1,29 @@
-.block-header
+.panel.main > .panel-body
 {
-    font-size: 80px;
+    display: none;
 }
 
-.quest-block
+.panel.main > .panel-heading:hover
 {
-
+    cursor: pointer;
 }
+
+body .main-content .panel
+{
+    width: 80%;
+    margin: 10px auto;
+}
+
+#username
+{
+    text-align: center;
+    width: 90%;
+    margin: 10px auto;
+    font-size: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .quest
 {
     width: 100%;
@@ -20,7 +37,7 @@
 .quest-img
 {
     width: 100%;
-    margin: 10px;
+    padding: 10px;
 }
 
 .quest-name
@@ -32,4 +49,12 @@ p,
 a
 {
     font-size: 40px;
+}
+
+@media screen and (max-device-width: 568px)
+{
+    body .main-content .panel
+    {
+        width: 100%;
+    }
 }

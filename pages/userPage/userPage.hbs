@@ -1,71 +1,71 @@
 {{#extend "base"}}
     {{#content "title"}}
-        <title>Фотоквесты</title>
+        <title>{{username}}</title>
     {{/content}}
 
     {{#content "styles"}}
-        <link rel="stylesheet" href="/index.css">
+        <link rel="stylesheet" href="/userPage.css">
     {{/content}}
 
     {{#content "main"}}
-        {{#if username}}
-            <div class="main-content">
-                <div>
-                    {{username}}
+        <div class="main-content">
+            <div class="page-header">
+                <h1 id="username">{{username}}</h1>
+            </div>
+            <div class="panel main panel-primary">
+                <div id="inProcess-title" class="panel-heading">
+                    <h3 class="panel-title">Завершенные</h3>
                 </div>
-                <div id="finishedQuests" class="main-content quest-block ">
-                    <div class="block-header">
-                        Завершенные
-                    </div>
+                <div class="panel-body quest">
                     {{#if finished}}
                         {{#each finished}}
                             <div class="quest">
                                 <div class="quest-name">
                                     <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
                                 </div>
-                                {{#if photo}}
-                                    <img class="quest-img img-rounded" src={{photo}}>
-                                {{/if}}
+                                <img class="quest-img img-rounded" src={{photo}}>
                             </div>
                         {{/each}}
                     {{else}}
                         <div>
-                            Сейчас вы не проходите ни одного квеста
+                            {{#if self}}
+                                Вы еще не прошли ни одного квеста
+                            {{else}}
+                                Пользователь еще не прошел ни одного квеста
+                            {{/if}}
                         </div>
                     {{/if}}
-
                 </div>
-                <div id="" class="main-content quest-block">
-                    <div class="block-header">
-                        В процессе
-                    </div>
+            </div>
+            <div class="panel main panel-primary">
+                <div id="inProcess-title" class="panel-heading">
+                    <h3 class="panel-title">В процессе</h3>
+                </div>
+                <div class="panel-body quest">
                     {{#if inProcess}}
                         {{#each inProcess}}
                             <div class="quest">
                                 <div class="quest-name">
                                     <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
                                 </div>
-                                {{#if photo}}
-                                    <img class="quest-img img-rounded" src={{photo}}>
-                                {{/if}}
+                                <img class="quest-img img-rounded" src={{photo}}>
                             </div>
                         {{/each}}
                     {{else}}
                         <div>
-                            Сейчас вы не проходите ни одного квеста
+                            {{#if self}}
+                                Сейчас вы не проходите ни одного квеста
+                            {{else}}
+                                Сейчас пользователь не проходит ни одного квеста
+                            {{/if}}
                         </div>
                     {{/if}}
                 </div>
             </div>
-        {{else}}
-            <div class="main-content">
-                {{error}}
-            </div>
-        {{/if}}
-
+        </div>
     {{/content}}
 
     {{#content "scripts"}}
-        <script src="/index.js"></script>
+        <script src="/userPage.js"></script>
     {{/content}}
 {{/extend}}

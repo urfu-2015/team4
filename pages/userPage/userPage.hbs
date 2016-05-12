@@ -4,7 +4,11 @@
     {{/content}}
 
     {{#content "styles"}}
-        <link rel="stylesheet" href="/userPage.css">
+        {{#if commonData.isDev}}
+            <link rel="stylesheet" href="/userPage.css">
+        {{else}}
+            <link rel="stylesheet" href="//dream-team-4.surge.sh/userPage.css">
+        {{/if}}
     {{/content}}
 
     {{#content "main"}}
@@ -66,6 +70,10 @@
     {{/content}}
 
     {{#content "scripts"}}
-        <script src="/userPage.js"></script>
+        {{#if commonData.isDev}}
+            <script src="/userPage.js"></script>
+        {{else}}
+            <script src="//dream-team-4.surge.sh/userPage.js"></script>
+        {{/if}}
     {{/content}}
 {{/extend}}

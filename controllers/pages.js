@@ -3,6 +3,7 @@
 const debug = require('debug')('team4:controllers:pages');
 
 const questsModel = require('../models/quests');
+const userModel = require('../models/users');
 const randInt = require('../lib/random').randInt;
 
 function filterFields(fields) {
@@ -40,11 +41,38 @@ exports.index = (req, res) => {
 
 exports.userPage = (req, res) => {
     debug('userPage');
-    if (req.commonData.user === req.params.name) {
-        res.render('userPage/userPage', {commonData: req.commonData});
-    } else {
-        res.message('no access').sendStatus(403);
-    }
+    let users = userModel(req.db);
+    var response = {
+        username: req.params.name,
+        commonData: req.commonData
+    };
+    users.isUserExist(req.params.name)
+        .then(users => {
+            if (users > 0) {
+                return req.params.name;
+            }
+            res.renderLayout('./pages/notFound/notFound.hbs',
+                {commonData: req.commonData});
+            throw Error('no user');
+        })
+        .then(users.getFinishedQuests)
+        .then(finished => {
+            if (finished.length !== 0) {
+                Object.assign(response, {finished: finished});
+            }
+            return req.params.name;
+        })
+        .then(users.getQuestsInProgress)
+        .then(inProcess => {
+            if (inProcess.length !== 0) {
+                Object.assign(response, {inProcess: inProcess});
+            }
+            if (req.params.name === response.commonData.user) {
+                Object.assign(response, {self: true});
+            }
+            console.log(response);
+            res.renderLayout('./pages/userPage/userPage.hbs', response);
+        });
 };
 
 exports.auth = (req, res) => {

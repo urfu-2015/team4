@@ -12,15 +12,15 @@
 {
     width: 50px;
     height: 50px;
-    color: #cbcbcb;
+    color: #ffc8c8;
     font-size: 50px;
     cursor: pointer;
 }
 
 .likes
 {
-    width: 100px;
-    margin: 20px;
+    width: 80%;
+    margin: 20px auto;
 }
 
 .like:hover
@@ -68,7 +68,8 @@ body > .panel
         margin: 10px auto;
         width: 100%;
     }
-    body > .panel
+    body > .panel,
+    .likes
     {
         width: 100%;
     }

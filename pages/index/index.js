@@ -8,10 +8,10 @@ var skip = 0;
 $('#getMore').click(function (e) {
     e.preventDefault();
     $.ajax({
-            method: "POST",
-            url: "/get-more-quests",
-            data: {skip: skip + 10}
-        })
+        method: "POST",
+        url: "/get-more-quests",
+        data: {skip: skip + 10}
+    })
         .done(function (data) {
             skip += 10;
             data.quests.forEach(function (quest) {

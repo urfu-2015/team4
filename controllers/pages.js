@@ -3,7 +3,6 @@
 const debug = require('debug')('team4:controllers:pages');
 
 const questsModel = require('../models/quests');
-const userModel = require('../models/users');
 const randInt = require('../lib/random').randInt;
 
 function filterFields(fields) {

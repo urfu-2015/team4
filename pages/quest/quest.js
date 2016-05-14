@@ -17,13 +17,11 @@ $('.panel.main .panel-heading').each(function () {
 });
 
 $('#quest-like').change(function () {
-    var name = $('#quest-title').html();
+    var title = $('#quest-title').html();
     $.ajax({
         method: 'POST',
         url: '/like-quest/',
-        data: {
-            name: name
-        }
+        data: {title}
     })
     .done(function (respond) {
         $('#likes-count').html(respond.count);
@@ -31,4 +29,19 @@ $('#quest-like').change(function () {
     .fail(function (msg) {
         console.log(msg);
     });
+});
+
+$('#start-quest').click(function (e) {
+    var title = $('#quest-title').html();
+    $.ajax({
+            method: 'POST',
+            url: '/start-quest/',
+            data: {title}
+        })
+        .done(function (respond) {
+            window.location = '/quest/' + respond.url;
+        })
+        .fail(function (msg) {
+            console.log(msg);
+        });
 });

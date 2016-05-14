@@ -47,7 +47,7 @@ exports.quest = (req, res) => {
 };
 
 exports.likeQuest = (req, res) => {
-    let questName = req.params.name;
+    let questName = req.body.title;
     debug(`like quest ${questName}`);
     let model = questsModel(req.db);
     let user = req.commonData.user;

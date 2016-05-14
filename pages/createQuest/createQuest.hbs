@@ -1,10 +1,19 @@
 {{#extend "base"}}
+
+    {{#content "head-scripts" mode="append"}}
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    {{/content}}
+
     {{#content "title"}}
         <title>Создания квеста</title>
     {{/content}}
 
     {{#content "styles"}}
-        <link rel="stylesheet" href="/createQuest.css">
+        {{#if commonData.isDev}}
+            <link rel="stylesheet" href="//dream-team-4.surge.sh/createQuest.css">
+        {{else}}
+            <link rel="stylesheet" href="/createQuest.css">
+        {{/if}}
     {{/content}}
 
     {{#content "main"}}
@@ -31,6 +40,9 @@
                         </div>
                         <hr>
                         <h3>Места</h3>
+                        <div class="map-template hidden">
+                            {{> yandexMap/yandexMap}}
+                        </div>
                         <div class="one-place hidden js-place js-place-template">
                             <div class="form-group">
                                 <div class="input-group">
@@ -40,6 +52,18 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control address-place" placeholder="Адрес" required disabled/>
+                                    <span class="input-group-addon danger address-place">
+                                        <span class="glyphicon glyphicon-remove address-place"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" name="geo-place" class="form-control coordinates-place" placeholder="Координаты"/>
+                            </div>
+                            <div class="mapBox"></div>
                             <div class="form-group js-file-input-div">
                                 <div class="custom-image-preview js-custom-image-preview"></div>
                                 <div class="input-group">
@@ -67,12 +91,24 @@
                             <div class="one-place js-place">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" name="title-place" class="form-control" placeholder="Название места" required />
+                                        <input type="text" name="title-place" class="form-control" placeholder="Название места" required/>
                                         <span class="input-group-addon danger">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control address-place" placeholder="Адрес" required disabled/>
+                                        <span class="input-group-addon danger address-place">
+                                            <span class="glyphicon glyphicon-remove address-place"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <input type="text" name="geo-place" class="form-control coordinates-place" placeholder="Координаты"/>
+                                </div>
+                                <div class="mapBox"></div>
                                 <div class="form-group js-file-input-div">
                                     <div class="custom-image-preview js-custom-image-preview"></div>
                                     <div class="input-group">
@@ -101,7 +137,7 @@
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </div>
-                        <button type="submit" class="btn btn-success col-xs-12" disabled>Создать</button>
+                        <button type="submit" class="btn btn-success col-xs-12 create-button" disabled>Создать</button>
                     </form>
                 </div>
             </div>

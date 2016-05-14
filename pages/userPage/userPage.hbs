@@ -23,12 +23,7 @@
                 <div class="panel-body quest">
                     {{#if finished}}
                         {{#each finished}}
-                            <div class="quest">
-                                <div class="quest-name">
-                                    <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
-                                </div>
-                                <img class="quest-img img-rounded" src={{photo}}>
-                            </div>
+                            <h2><a href={{url}}>{{title}}</a></h2>
                         {{/each}}
                     {{else}}
                         <div>
@@ -48,12 +43,7 @@
                 <div class="panel-body quest">
                     {{#if inProcess}}
                         {{#each inProcess}}
-                            <div class="quest">
-                                <div class="quest-name">
-                                    <p class="quest-name-a"><a href={{url}}>{{title}}</a></p>
-                                </div>
-                                <img class="quest-img img-rounded" src={{photo}}>
-                            </div>
+                            <h2><a href={{url}}>{{title}}</a></h2>
                         {{/each}}
                     {{else}}
                         <div>
@@ -70,6 +60,10 @@
     {{/content}}
 
     {{#content "scripts"}}
-        <script src="/userPage.js"></script>
+        {{#if commonData.isDev}}
+            <script src="/userPage.js"></script>
+        {{else}}
+            <link rel="script" href="//dream-team-4.surge.sh/userPage.js">
+        {{/if}}
     {{/content}}
 {{/extend}}

@@ -28,8 +28,9 @@ exports.index = (req, res) => {
     debug('index');
     const quests = questsModel(req.db);
     let questNum = req.body.hasOwnProperty('skip') ? parseInt(req.body.skip, 10) : 0;
-    quests.getLimitQuests(questNum, 10).then(chosenQuests => {
-        chosenQuests = chosenQuests.map(filterFields(['url', 'title', 'photo']));
+    let questLimit = req.body.hasOwnProperty('get') ? parseInt(req.body.get, 10) : 5;
+    quests.getLimitQuests(questNum, questLimit).then(chosenQuests => {
+        chosenQuests = chosenQuests.map(filterFields(['url', 'title']));
         if (questNum === 0) {
             res.renderLayout('./pages/index/index.hbs',
                 {quests: chosenQuests, commonData: req.commonData});

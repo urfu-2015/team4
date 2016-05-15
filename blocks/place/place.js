@@ -1,5 +1,6 @@
 $('.check-in').each(function () {
     $(this).click(function (event) {
-        var name = form.data('name'); //quest#place
+        var name = $(this).data('name');
+        console.log(name)// quest#place
     });
 });

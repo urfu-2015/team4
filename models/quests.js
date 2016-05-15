@@ -91,6 +91,7 @@ const createQuest = quest => {
     return isQuestExist(title)
         .then(() => {
             isQuestValid(quest);
+
             let places = quest.places.map(place => createPlace(place));
 
             return quests.insert({
@@ -141,6 +142,7 @@ const getLimitQuestsSorted = (skip, limit, field) => {
 
         sortObj[field] = -1;
         console.log('sorted');
+
         return res.sort(sortObj).skip(skip).limit(limit).toArray();
     }
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const debug = require('debug')('team4:middleware:mongo');
+
 const config = require('config');
 const dbConfig = config.get("db");
 const MongoClient = require('mongodb').MongoClient;

@@ -40,6 +40,7 @@ const login = user => {
                 if (result.length) {
                     return result[0];
                 }
+
                 throw errors.wrongData;
             },
             () => {
@@ -55,6 +56,7 @@ const addUser = newUser => {
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];
+
             return usersCollection.insertOne(newUser);
         });
 };
@@ -74,6 +76,7 @@ function getQuestsInProgress(name) {
            if (user.length) {
                return user[0].inProgressQuests;
            }
+
            throw new Error('Пользователь не найден');
        });
 }
@@ -85,6 +88,7 @@ function getFinishedQuests(name) {
             if (user.length) {
                 return user[0].finishedQuests;
             }
+
             throw new Error('Пользователь не найден');
         });
 }

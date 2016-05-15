@@ -1,6 +1,7 @@
 'use strict';
 
 const debug = require('debug')('team4:middleware:renderLayout');
+
 const fs = require('fs');
 
 const app = require('../app.js');

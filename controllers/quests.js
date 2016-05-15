@@ -64,6 +64,7 @@ exports.likeQuest = (req, res) => {
 
     if (!user) {
         res.status(401);
+
         return;
     }
     model
@@ -86,6 +87,7 @@ exports.addCommentToPlace = (req, res) => {
 
     if (!author) {
         res.status(401);
+
         return;
     }
 
@@ -105,6 +107,7 @@ exports.addCommentToQuest = (req, res) => {
 
     if (!author) {
         res.status(401);
+
         return;
     }
 
@@ -122,6 +125,7 @@ const storage = multer.diskStorage({
         } catch (e) {
             fs.mkdirSync('tmp/');
         }
+
         const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
 
         fs.mkdir(dir, e => {
@@ -175,13 +179,16 @@ exports.create = (req, res) => {
             if (!Array.isArray(geo)) {
                 geo = [geo];
             }
+
             geo = geo.map(str => {
                 const positions = str.split(',');
+
                 return {
                     latitude: positions[0],
                     longitude: positions[1]
                 };
             });
+
             console.log(geo);
             let placeTitle = body['title-place'];
 

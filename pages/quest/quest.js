@@ -39,6 +39,7 @@ $('#quest-like').change(function () {
     });
 });
 
+/*  eslint quote-props: [1, "as-needed"] */
 $('#start-quest').click(function () {
     var title = $('#quest-title').html();
     var button = this;
@@ -62,7 +63,7 @@ $('#start-quest').click(function () {
            // window.location = '/quest/' + respond.url;
         })
         .fail(function (msg) {
-            $(button).css('display', 'block');
+            $(button).css('display', 'inline-block');
             console.log(msg);
         });
 });

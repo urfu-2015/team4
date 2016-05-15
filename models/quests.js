@@ -114,10 +114,12 @@ const getLimitQuests = (skip, limit) => {
 };
 
 const getLimitQuestsSorted = (skip, limit, field) => {
+    console.log(field);
     var res = quests.find({}, {_id: 0});
     if (field) {
         var sortObj = {};
-        sortObj[field] = 1;
+        sortObj[field] = -1;
+        console.log('sorted');
         return res.sort(sortObj).skip(skip).limit(limit).toArray();
     }
     return res.skip(skip).limit(limit).toArray();

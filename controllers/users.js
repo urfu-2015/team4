@@ -26,11 +26,11 @@ module.exports.register = (req, res) => {
     users.addUser({name, email, password}).then(
         () => {
             let userId = hash.create(name, salt);
-            res.cookie('id', userId, {maxAge: 60 * 24 * 60 * 1000});
+            res.cookie('id', userId, {maxAge: 24 * 60 * 60 * 1000});
             res.status(200).send('Registration was successfull');
         },
         error => {
-            res.status(error.code).send(error.message);
+            res.status(400).send(error.message);
         }
     );
 };
@@ -43,11 +43,11 @@ module.exports.login = (req, res) => {
     users.login({email, password}).then(
         result => {
             let userId = hash.create(result.name, salt);
-            res.cookie('id', userId, {maxAge: 60 * 24 * 60 * 1000});
+            res.cookie('id', userId, {maxAge: 24 * 60 * 60 * 1000});
             res.status(200).send('Successfully logged in');
         },
         error => {
-            res.status(error.code).send(error.message);
+            res.status(400).send(error.message);
         }
     );
 };
@@ -94,8 +94,12 @@ module.exports.startQuest = (req, res) => {
     const users = usersModel(req.db);
     const quests = questsModel(req.db);
     let user = req.commonData.user;
-    users.addQuestInProgress(user, title)
-        .then(() => quests.getQuest(title))
-        .then(quest => res.status(200).send({url: quest.url}))
+    let url;
+    quests.getQuest(title)
+        .then(quest => {
+            url = quest.url;
+            users.addQuestInProgress(user, quest)
+                .then(() => res.status(200).send({url}));
+        })
         .catch(res.status(400));
 };

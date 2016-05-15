@@ -149,7 +149,7 @@ exports.create = (req, res) => {
     flickr(dir)
         .then(urls => {
             const body = req.body;
-            const positions = body['geo-place'][0].split(',');
+            const positions = body['geo-place'].split(',');
             const geo = {
                 latitude: positions[0],
                 longitude: positions[1]

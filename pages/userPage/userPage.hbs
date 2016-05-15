@@ -12,69 +12,78 @@
     {{/content}}
 
     {{#content "main"}}
-        <div class="main-content">
-            <div class="page-header">
-                <h1 id="username">{{username}}</h1>
-            </div>
-            <div class="panel main panel-primary">
-                <div id="inProcess-title" class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Завершенные</h2>
-                    <hr>
-                </div>
-                <div class="quest">
-                    <div class="row">
-                        {{#if finished}}
-                            {{#each finished}}
-                                <div class="col-xs-6 text-center">
-                                    <div class="img-box">
-                                        <img class="img-border img-full" src="{{photo}}" alt="{{title}}">
-                                    </div>
-                                    <h2>{{title}}</h2>
-                                    <a href="/quest/{{url}}" class="btn btn-default btn-lg">Посмотреть</a>
-                                    <hr>
-                                </div>
-                            {{/each}}
-                        {{else}}
-                    </div>
-                        <div>
-                            {{#if self}}
-                                Вы еще не прошли ни одного квеста
-                            {{else}}
-                                Пользователь еще не прошел ни одного квеста
-                            {{/if}}
-                        </div>
-                    {{/if}}
-                </div>
-            </div>
-            <div id="inProcess-title" class="col-lg-12">
-                <hr>
-                <h2 class="intro-text text-center">В процессе</h2>
-                <hr>
-            </div>
-            <div class="quest">
-                <div class="row">
-                    {{#if inProcess}}
-                        {{#each inProcess}}
-                            <div class="col-xs-6 text-center">
-                                <div class="img-box">
-                                    <img class="img-border img-full" src="{{photo}}" alt="{{title}}">
-                                </div>
-                                <h2>{{title}}</h2>
-                                <a href="/quest/{{url}}" class="btn btn-default btn-lg">Посмотреть</a>
-                                <hr>
-                            </div>
-                        {{/each}}
-                    {{else}}
-                </div>
-                    <div>
+        <div class="row">
+            <div class="box">
+                <div class="main-content">
+                    <div class="col-lg-12">
                         {{#if self}}
-                            Сейчас вы не проходите ни одного квеста
+                            <p class="text-center">Моя страничка</p>
                         {{else}}
-                            Сейчас пользователь не проходит ни одного квеста
+                            <p class="text-center">{{username}}</p>
                         {{/if}}
                     </div>
-                {{/if}}
+                    <div class="main panel-primary">
+                        <div id="inProcess-title" class="col-lg-12">
+                            <hr>
+                            <h2 class="intro-text text-center">Завершенные</h2>
+                            <hr>
+                        </div>
+                        <div class="quest">
+                            <div class="row">
+                                {{#if finished}}
+                                    {{#each finished}}
+                                        <div class="col-xs-6 text-center">
+                                            <div class="quest-img center-block">
+                                                <img src={{photo}} alt={{title}}>
+                                            </div>
+                                            <h3>{{title}}</h3>
+                                            <a href="/quest/{{url}}" class="btn btn-default btn-lg">Посмотреть</a>
+                                            <hr>
+                                        </div>
+                                    {{/each}}
+                                {{else}}
+                            </div>
+                                <div class="text-center">
+                                    {{#if self}}
+                                        Вы еще не прошли ни одного квеста
+                                    {{else}}
+                                        Пользователь еще не прошел ни одного квеста
+                                    {{/if}}
+                                </div>
+                            {{/if}}
+                        </div>
+                    
+                        <div id="inProcess-title" class="col-lg-12">
+                            <hr>
+                            <h2 class="intro-text text-center">В процессе</h2>
+                            <hr>
+                        </div>
+                        <div class="quest">
+                            <div class="row">
+                                {{#if inProcess}}
+                                    {{#each inProcess}}
+                                        <div class="col-xs-6 text-center">
+                                            <div class="quest-img center-block">
+                                                <img src={{photo}} alt={{title}}>
+                                            </div>
+                                            <h3>{{title}}</h3>
+                                            <a href="/quest/{{url}}" class="btn btn-default btn-lg">Посмотреть</a>
+                                            <hr>
+                                        </div>
+                                    {{/each}}
+                                {{else}}
+                            </div>
+                                <div class="text-center">
+                                    {{#if self}}
+                                        Сейчас вы не проходите ни одного квеста
+                                    {{else}}
+                                        Сейчас пользователь не проходит ни одного квеста
+                                    {{/if}}
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {{/content}}

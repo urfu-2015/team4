@@ -11,7 +11,6 @@
 body .main-content .panel
 {
     width: 80%;
-    margin: 10px auto;
 }
 
 #username
@@ -36,6 +35,38 @@ body .main-content .panel
 .col-xs-6
 {
     margin: 10px 0;
+}
+
+.quest-img
+{
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+img
+{
+    min-width: 150px;
+    max-width: 200px;
+    min-height: 150px;
+    max-width: 200px;
+}
+
+h3
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.box
+{
+    padding-top: 3px !important;
+}
+
+p
+{
+    font-size: 30px;
 }
 
 @media screen and (max-device-width: 568px)

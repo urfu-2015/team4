@@ -134,7 +134,6 @@ const getLimitQuests = (skip, limit) => {
 };
 
 const getLimitQuestsSorted = (skip, limit, field) => {
-    console.log(field);
     var res = quests.find({}, {_id: 0});
 
     if (field) {

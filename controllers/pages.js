@@ -32,8 +32,8 @@ exports.index = (req, res) => {
     debug('index');
     const quests = questsModel(req.db);
 
-    let questNum = req.body.hasOwnProperty('skip') ? parseInt(req.body.skip, 10) : 0;
-    let questLimit = req.body.hasOwnProperty('get') ? parseInt(req.body.get, 10) : 3;
+    let questNum = req.body.skip ? parseInt(req.body.skip, 10) : 0;
+    let questLimit = req.body.get ? parseInt(req.body.get, 10) : 3;
     let filter = req.url === '/popular' ? 'likesCount' : '';
 
     quests.getLimitQuestsSorted(questNum, questLimit, filter).then(chosenQuests => {
@@ -41,8 +41,7 @@ exports.index = (req, res) => {
         chosenQuests = chosenQuests.map(filterFields(['url', 'photo', 'title']));
 
         if (questNum === 0) {
-            res.renderLayout('./pages/index/index.hbs',
-                {quests: chosenQuests});
+            res.renderLayout('./pages/index/index.hbs', {quests: chosenQuests});
         } else {
             res.status(200).json({quests: chosenQuests});
         }

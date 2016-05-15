@@ -201,7 +201,7 @@ $(function () {
 
         $('.box').hide();
         $('.box.loading-gif').show();
-        
+
         $.ajax({
             url: '/create-quest',
             type: 'POST',
@@ -212,6 +212,6 @@ $(function () {
         })
         .done(function (res) {
             window.location = res.url;
-        })
+        });
     });
 });

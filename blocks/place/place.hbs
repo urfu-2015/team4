@@ -7,7 +7,7 @@
                 {{> comments/comments this place=true}}
                 {{#if inProgress}}
                     {{#unless checkIn}}
-                        <button class="btn btn-success check-in">Check-in</button>
+                        <button data-name="{{quest}}#{{title}}" class="btn btn-success check-in">Check-in</button>
                     {{/unless}}
                 {{/if}}
             </div>

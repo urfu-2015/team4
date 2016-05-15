@@ -107,7 +107,8 @@
     }
 }
 
-.loading-gif {
+.loading-gif
+{
     height: 600px;
     background-image: url("hourglass.gif");
     background-repeat: no-repeat;

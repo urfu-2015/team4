@@ -69,7 +69,7 @@ var addQuestForm = {
         var $parent = $input.closest(this._$fileInputDiv.selector);
         var $previewPlace = $parent.find(this._$customImagePreview.selector);
         var $fileName = $parent.find(this._$imagePreviewFileName.selector);
-        var $icon = $parent.find(this._$imagePreviefFileNameIcon.selector);
+        var $icon = $parent.find(this._$imagePreviefFileNameIcon);
         var $clearBtn = $parent.find(this._$imagePreviewClear.selector);
         var $img = $('<img/>', {width: '100%'});
 
@@ -91,7 +91,7 @@ var addQuestForm = {
     _clearPreview: function (event) {
         var $button = $(event.target);
         var $parent = $button.closest(this._$fileInputDiv.selector);
-        var $icon = $parent.find(this._$imagePreviefFileNameIcon.selector);
+        var $icon = $parent.find(this._$imagePreviefFileNameIcon);
 
         $parent.find(this._$customImagePreview.selector).empty();
         $parent.find(this._$imagePreviewFileName.selector).val('');

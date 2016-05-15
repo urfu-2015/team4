@@ -98,8 +98,8 @@ module.exports.startQuest = (req, res) => {
     quests.getQuest(title)
         .then(quest => {
             url = quest.url;
-            return users.addQuestInProgress(user, quest);
+            users.addQuestInProgress(user, quest)
+                .then(() => res.status(200).send({url}));
         })
-        .then(() => res.status(200).send({url}))
         .catch(res.status(400));
 };

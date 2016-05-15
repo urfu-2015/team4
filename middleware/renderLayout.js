@@ -12,7 +12,9 @@ module.exports = () => {
             if (!context) {
                 context = {};
             }
+
             let template = app.hbs.handlebars.compile(fs.readFileSync(path, 'utf8'));
+
             return res.send(template(Object.assign(context, {commonData: req.commonData})));
         };
         next();

@@ -10,6 +10,7 @@ const mongoUri = `mongodb://${dbConfig.login}:${dbConfig.password}` +
 
 module.exports = () => {
     let connection;
+
     return (req, res, next) => {
         debug('connecting to db');
         if (connection) {

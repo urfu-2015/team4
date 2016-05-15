@@ -144,12 +144,12 @@ const upload = multer({storage: storage});
 exports.upload = upload.array('input-file-preview');
 
 exports.create = (req, res) => {
+    debug('create');
     const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
     flickr(dir)
         .then(urls => {
             const body = req.body;
-            const positions = body['geo-place'].split(',');
-            console.log(positions);
+            const positions = body['geo-place'][0].split(',');
             const geo = {
                 latitude: positions[0],
                 longitude: positions[1]

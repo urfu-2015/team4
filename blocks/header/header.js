@@ -1,9 +1,12 @@
+'use strict';
+
 require('./header.css');
-require('../../public/horsey.css');
+require('./horsey.css');
+require('./horsey.js');
 
 var $searchField = $('.search-field');
 
-/* eslint no-undef: "off"*/
+/* eslint no-undef: "off" */
 horsey($searchField[0], {
     suggestions: function (value, done) {
         var items = ['test quest'];

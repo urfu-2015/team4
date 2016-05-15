@@ -199,19 +199,19 @@ $(function () {
 
         var formData = new FormData($(this)[0]);
 
+        $('.box').hide();
+        $('.box.loading-gif').show();
+        
         $.ajax({
-                url: '/create-quest',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false
+            url: '/create-quest',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
         })
         .done(function (res) {
             window.location = res.url;
         })
-        .fail(function (res) {
-
-        });
     });
 });

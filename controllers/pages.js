@@ -31,7 +31,7 @@ function getRandomPhoto(quest) {
 exports.index = (req, res) => {
     debug('index');
     const quests = questsModel(req.db);
-    
+
     let questNum = req.body.hasOwnProperty('skip') ? parseInt(req.body.skip, 10) : 0;
     let questLimit = req.body.hasOwnProperty('get') ? parseInt(req.body.get, 10) : 3;
     let filter = req.url === '/popular' ? 'likesCount' : '';

@@ -68,20 +68,22 @@ exports.userPage = (req, res) => {
             return finished.concat(inProcess).concat(created);
         })
         .then(quests.getQuestsById)
-        .then(questsInfo=> {
-
-            let finished = user.finishedQuests.forEach((quest) => {
-                return questsInfo.find(q => {return q._id === quest})
+        .then(questsInfo => {
+            let finished = user.finishedQuests.forEach(quest => {
+                return questsInfo.find(q => {
+                    return q._id === quest;
+                });
             }).map(filterFields(['title', 'photo', 'url']));
-
-            let inProcess = user.inProgressQuests.forEach((quest) => {
-                return questsInfo.find(q => {return q._id === quest})
+            let inProcess = user.inProgressQuests.forEach(quest => {
+                return questsInfo.find(q => {
+                    return q._id === quest;
+                });
             }).map(filterFields(['title', 'photo', 'url']));
-
-            let created = user.createdQuests.forEach((quest) => {
-                return questsInfo.find(q => {return q._id === quest})
+            let created = user.createdQuests.forEach(quest => {
+                return questsInfo.find(q => {
+                    return q._id === quest;
+                });
             }).map(filterFields(['title', 'photo', 'url']));
-
             Object.assign(response, {finished, inProcess, created});
             res.renderLayout('./pages/userPage/userPage.hbs', response);
         })

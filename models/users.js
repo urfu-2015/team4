@@ -10,10 +10,12 @@ const errors = {
         code: 1,
         message: 'Имя уже существует'
     },
+
     mongoError: {
         code: 2,
         message: 'Ошибка Mongo'
     },
+
     wrongData: {
         code: 1,
         message: 'Неверные логин/пароль'
@@ -29,6 +31,7 @@ function getHash(password) {
 
 const login = user => {
     user.password = getHash(user.password);
+
     return usersCollection
         .find(user)
         .toArray()
@@ -131,5 +134,6 @@ const operations = {
 
 module.exports = db => {
     usersCollection = db.collection('users');
+
     return operations;
 };

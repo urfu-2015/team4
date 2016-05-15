@@ -2,9 +2,10 @@
 
 const debug = require('debug')('team4:controllers:quests');
 
+const fs = require('fs');
 const multer = require('multer');
 const tr = require('transliteration');
-const fs = require('fs');
+
 const flickr = require('../lib/flickr');
 const questsModel = require('../models/quests.js');
 const questInfo = require('../lib/getQuestInfo');
@@ -12,6 +13,7 @@ const questInfo = require('../lib/getQuestInfo');
 exports.addQuest = (req, res) => {
     debug('add quest');
     let model = questsModel(req.db);
+
     model.createQuest(req.body.quest).then(
         () => {
             res.status(200).send('Place added successfully');
@@ -28,6 +30,7 @@ exports.quest = (req, res) => {
     let user = req.commonData.user;
     let commonData = {commonData: req.commonData};
     let model = questsModel(req.db);
+
     if (user) {
         model
             .getTitle(questUrl)
@@ -35,6 +38,7 @@ exports.quest = (req, res) => {
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
+
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
             })
             .catch(err => res.error(err));
@@ -45,6 +49,7 @@ exports.quest = (req, res) => {
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
+
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
             })
             .catch(err => res.error(err));
@@ -56,6 +61,7 @@ exports.likeQuest = (req, res) => {
     debug(`like quest ${questName}`);
     let model = questsModel(req.db);
     let user = req.commonData.user;
+
     if (!user) {
         res.status(401);
         return;
@@ -77,11 +83,14 @@ exports.addCommentToPlace = (req, res) => {
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
+
     if (!author) {
         res.status(401);
         return;
     }
+
     let comment = {author, text};
+
     model
         .addCommentToPlace(questName, placeName, comment)
         .then(() => res.status(200).send(comment));
@@ -93,11 +102,14 @@ exports.addCommentToQuest = (req, res) => {
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
+
     if (!author) {
         res.status(401);
         return;
     }
+
     let comment = {author, text};
+
     model
         .addCommentToQuest(questName, comment)
         .then(() => res.status(200).send(comment));
@@ -111,6 +123,7 @@ const storage = multer.diskStorage({
             fs.mkdirSync('tmp/');
         }
         const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
+
         fs.mkdir(dir, e => {
             if (!e || (e && e.code === 'EEXIST')) {
                 cb(null, dir);
@@ -121,20 +134,26 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         let fileNumber = req.fileNumber;
+
         if (fileNumber) {
             ++req.fileNumber;
         } else {
             fileNumber = 0;
             req.fileNumber = 1;
         }
+
         const titles = req.body['title-place'];
+
         let fileName;
+
         if (Array.isArray(titles)) {
             fileName = req.body['title-place'][fileNumber];
         } else {
             fileName = req.body['title-place'];
         }
+
         const fileType = file.originalname.replace(/.+(\.\w{3,4})$/, '$1');
+
         cb(null, fileName + fileType);
     }
 });
@@ -146,10 +165,13 @@ exports.upload = upload.array('input-file-preview');
 exports.create = (req, res) => {
     debug('create');
     const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
+
     flickr(dir)
         .then(urls => {
             const body = req.body;
+
             let geo = body['geo-place'];
+
             if (!Array.isArray(geo)) {
                 geo = [geo];
             }
@@ -162,9 +184,11 @@ exports.create = (req, res) => {
             });
             console.log(geo);
             let placeTitle = body['title-place'];
+
             if (!Array.isArray(placeTitle)) {
                 placeTitle = [placeTitle];
             }
+
             const quest = {
                 author: req.commonData.user,
                 title: body['title-quest'],
@@ -177,6 +201,7 @@ exports.create = (req, res) => {
                     };
                 })
             };
+
             console.log('create quest:', quest);
             return questsModel(req.db).createQuest(quest);
         })

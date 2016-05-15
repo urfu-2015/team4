@@ -9,9 +9,11 @@ module.exports = () => {
     return (req, res, next) => {
         debug('check cookie');
         var userId = req.cookies.id;
+
         if (userId) {
             var isLoggedIn = hash.validate(userId, salt);
             var userName = userId.split('.')[0];
+
             if (isLoggedIn) {
                 req.commonData.user = userName;
             }

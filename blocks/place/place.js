@@ -1,6 +1,6 @@
 $('.check-in').each(function () {
-    $(this).click(function (event) {
+    $(this).click(function () {
         var name = $(this).data('name');
-        console.log(name)// quest#place
+        console.log(name);// quest#place
     });
 });

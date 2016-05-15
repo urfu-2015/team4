@@ -101,13 +101,13 @@ exports.getTitles = (req, res) => {
     debug('getTitles');
     questsModel(req.db)
         .getAllQuests()
-            .then(quests => {
-                res.status(200).json({quests: quests.map(quest => quest.title)});
-            })
-            .catch(err => {
-                console.error(err);
-                res.statusCode(500);
-            });
+        .then(quests => {
+            res.status(200).json({quests: quests.map(quest => quest.title)});
+        })
+        .catch(err => {
+            console.error(err);
+            res.statusCode(500);
+        });
 };
 
 exports.search = (req, res) => {

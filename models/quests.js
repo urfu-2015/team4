@@ -86,7 +86,8 @@ const createQuest = quest => {
                 places,
                 url: toUrl(title),
                 comments: [],
-                likes: []
+                likes: [],
+                likesCount: 0
             });
         })
         .then(res => res.ops[0].url);
@@ -118,6 +119,16 @@ const getLimitQuests = (skip, limit) => {
     return quests.find({}, {_id: 0}).skip(skip).limit(limit).toArray();
 };
 
+const getLimitQuestsSorted = (skip, limit, field) => {
+    var res = quests.find({}, {_id: 0});
+    if (field) {
+        var sortObj = {};
+        sortObj[field] = 1;
+        return res.sort(sortObj).skip(skip).limit(limit).toArray();
+    }
+    return res.skip(skip).limit(limit).toArray();
+};
+
 const likeQuest = (title, user) => {
     return getQuest(title)
         .then(quest => {
@@ -128,6 +139,10 @@ const likeQuest = (title, user) => {
             return quests.findOneAndUpdate({title}, {$push: {likes: user}}, options);
         })
         .then(quest => {
+            quests.updateOne(
+                {title},
+                {$set: {likesCount: quest.value.likes.length}}
+            );
             return quest.value.likes.length;
         });
 };
@@ -165,6 +180,7 @@ module.exports = db => {
         getAllQuests,
         removeAllQuests,
         getLimitQuests,
+        getLimitQuestsSorted,
         getQuest,
         addCommentToQuest,
         likeQuest,

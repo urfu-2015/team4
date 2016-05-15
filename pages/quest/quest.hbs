@@ -33,19 +33,17 @@
                         </div>
                         <hr>
                     </div>
-
+                    <h3 class="description-title">О квесте:</h3>
                     <div class="description">{{description}}</div>
 
                     {{#if commonData.user}}
-                        {{#if inProgress}}
-                            <div class="message">Вы проходиете квест</div>
-                        {{else}}
+                        {{#unless inProgress}}
                             {{#if finished}}
                                 <div class="finished">Вы успешно прошли квест</div>
                             {{else}}
                                 <button class="btn btn-default btn-lg" id="start-quest">Начать квест</button>
                             {{/if}}
-                        {{/if}}
+                        {{/unless}}
                     {{else}}
                         <form class="reg-ref" method="get" action="/reg">
                             <button class="btn btn-default btn-lg" type="submit">Зарегистрироваться чтобы пройти квест</button>
@@ -54,11 +52,7 @@
 
                     <div id="list-of-places">
                         {{#each places}}
-<<<<<<< HEAD
-                            {{>place/place this user =../commonData.user quest =../title}}
-=======
                             {{>place/place this user =../commonData.user quest =../title inProgress=../inProgress}}
->>>>>>> 697a327b66b4b8d08679634255ef9f31750db148
                         {{/each}}
                     </div>
 

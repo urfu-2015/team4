@@ -50,7 +50,7 @@ exports.userPage = (req, res) => {
     };
     users.isUserExist(req.params.name)
         .then(users => {
-            if (users > 0) {
+            if (users) {
                 return req.params.name;
             }
             res.renderLayout('./pages/notFound/notFound.hbs');
@@ -59,22 +59,28 @@ exports.userPage = (req, res) => {
         .then(users.getFinishedQuests)
         .then(finished => {
             finished = finished.map(filterFields(['url', 'title']));
-            if (finished.length !== 0) {
-                Object.assign(response, {finished: finished});
-            }
+            Object.assign(response, {finished});
             return req.params.name;
         })
         .then(users.getQuestsInProgress)
         .then(inProcess => {
             inProcess = inProcess.map(filterFields(['url', 'title']));
-            if (inProcess.length !== 0) {
-                Object.assign(response, {inProcess: inProcess});
+            if (inProcess) {
+                Object.assign(response, {inProcess});
             }
+            console.log(response);
+            return req.params.name;
+        })
+        .then(users.getCreatedQuests)
+        .then(created => {
+            Object.assign(response, {created});
             if (req.params.name === response.commonData.user) {
                 Object.assign(response, {self: true});
             }
-            console.log(response);
             res.renderLayout('./pages/userPage/userPage.hbs', response);
+        })
+        .catch(() => {
+            res.status(500).renderLayout('./pages/notFound/notFound.hbs');
         });
 };
 

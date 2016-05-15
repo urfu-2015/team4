@@ -8,6 +8,7 @@ const fs = require('fs');
 const flickr = require('../lib/flickr');
 const questsModel = require('../models/quests.js');
 const questInfo = require('../lib/getQuestInfo');
+const userModel = require('../models/users.js');
 
 exports.addQuest = (req, res) => {
     debug('add quest');
@@ -77,14 +78,20 @@ exports.addCommentToPlace = (req, res) => {
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
+    let userMod = userModel(req.db);
     if (!author) {
         res.status(401);
         return;
     }
     let comment = {author, text};
-    model
-        .addCommentToPlace(questName, placeName, comment)
-        .then(() => res.status(200).send(comment));
+    userMod
+        .getPublicUserData(author)
+        .then(user => {
+            comment.url = user.url;
+            return model.addCommentToPlace(questName, placeName, comment);
+        })
+        .then(() => res.status(200).send(comment))
+        .catch(err => console.error(err));
 };
 
 exports.addCommentToQuest = (req, res) => {
@@ -93,14 +100,20 @@ exports.addCommentToQuest = (req, res) => {
     let author = req.commonData.user;
     let text = req.body.text;
     let model = questsModel(req.db);
+    let userMod = userModel(req.db);
     if (!author) {
         res.status(401);
         return;
     }
     let comment = {author, text};
-    model
-        .addCommentToQuest(questName, comment)
-        .then(() => res.status(200).send(comment));
+    userMod
+        .getPublicUserData(author)
+        .then(user => {
+            comment.url = user.url;
+            return model.addCommentToQuest(questName, comment);
+        })
+        .then(() => res.status(200).send(comment))
+        .catch(err => console.error(err));
 };
 
 const storage = multer.diskStorage({

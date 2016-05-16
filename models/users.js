@@ -55,7 +55,7 @@ const addUser = newUser => {
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];
-            newUser.url = toUrl(name);
+            newUser.url = toUrl(newUser.name);
             return usersCollection.insertOne(newUser);
         });
 };

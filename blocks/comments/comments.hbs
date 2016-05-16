@@ -1,8 +1,6 @@
-
-<button data-toggle="collapse" class="comment-icon" data-target="#{{quest}}-{{title}}-comments">
+<div data-toggle="collapse" class="comment-icon" data-target="#{{quest}}-{{title}}-comments">
     <span class="glyphicon glyphicon-comment"></span>
-</button>
-
+</div>
 <div class="collapse" id="{{quest}}-{{title}}-comments">
     <div class="panel main panel-primary">
         <div class="panel-heading">
@@ -25,13 +23,9 @@
                 {{/each}}
                 </section>
             {{#if user}}
-                 {{#if place}}
-                    <form action='/place-comment' class="commentForm" data-name="{{quest}}#{{title}}" method="post">
-                 {{else}}
-                    <form action='/quest-comment' class="commentForm" data-name="{{title}}" method="post">
-                 {{/if}}
+                <form action='/place-comment' class="commentForm" data-name="{{quest}}#{{title}}" method="post">
                     <label for="comment">Комментарий:</label>
-                    <textarea class="new-comment form-control" rows="5" id="comment" required></textarea>
+                    <textarea class="new-comment form-control" rows="5" required></textarea>
                     <button type="submit" class="btn btn-info send-com" disabled>Добавить комментарий</button>
                 </form>
             {{else}}

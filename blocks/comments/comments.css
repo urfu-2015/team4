@@ -6,15 +6,23 @@
     border: none;
 }
 
+.quest-comment > .panel-body
+{
+    display: none;
+}
+
+
 .comment-icon
 {
-    margin-bottom: 10px;
     background-image: none;
     background-color: #fff;
     border: none;
     cursor: pointer;
     font-size: 20px;
     color: #666;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .panel.main

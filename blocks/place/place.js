@@ -8,6 +8,7 @@ function checkIn() {
         timeout: 10000
     };
     var button = this;
+    
     navigator.geolocation.getCurrentPosition(
         function (position) {
             $.ajax({

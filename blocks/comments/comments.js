@@ -2,7 +2,6 @@
 
 require('./comments.css');
 
-/*  eslint quote-props: [1, "as-needed"] */
 $('.commentForm').each(function () {
     $(this).submit(function (event) {
         event.preventDefault();

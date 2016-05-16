@@ -41,7 +41,6 @@ exports.quest = (req, res) => {
             .then(quest => {
                 console.log(quest);
                 let response = Object.assign(quest, commonData);
-
                 res.status(200).renderLayout('./pages/quest/quest.hbs', response);
             })
             .catch(err => res.error(err));
@@ -233,26 +232,34 @@ exports.create = (req, res) => {
         });
 };
 
-exports.checkin = req => {
-    var quests = req.db.collection('quests');
-    quests.findOne({title: req.body.quest}).then(function (quest) {
-        var place = null;
-        for (var i = 0; i < quest.places.length; i++) {
-            if (quest.places[i].title === req.body.place) {
-                place = quest.places[i];
-                break;
-            }
-        }
-        if (place) {
-            var userLatitude = parseFloat(req.body.latitude);
-            var userLongitude = parseFloat(req.body.longitude);
-            var distance = geolib.getDistance(
+exports.checkin = (req, res) => {
+    debug(`checkIn`);
+    const model = questsModel(req.db);
+
+    let name = req.body.name.split('#');
+    let questName = name[0];
+    let placeName = name[1];
+    let userLatitude = parseFloat(req.body.latitude);
+    let userLongitude = parseFloat(req.body.longitude);
+    model.getQuest(questName)
+        .then(quest => quest.places.find(place => place.title === placeName))
+        .then(place => {
+            let distance = geolib.getDistance(
                 {latitude: userLatitude, longitude: userLongitude},
                 {latitude: place.geo.latitude, longitude: place.geo.longitude}
             );
-            if (distance <= 30) {
-                questsModel.addCheckinToPlace(quest.title, place.title, req.commonData.user);
+
+            if (distance > 30) {
+                res.status(400).send('Вы слишком далеко от места');
+                return;
             }
-        }
-    });
+
+            model
+                .addCheckinToPlace(questName, placeName, req.commonData.user)
+                .then(() => res.status(200));
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).send(err);
+        });
 };

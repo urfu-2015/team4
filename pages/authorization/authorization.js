@@ -9,7 +9,7 @@ $(function () {
     validator.init();
 
     var errorInfo = $('.bg-danger.danger-message');
-
+    
     $('#auth-form').submit(function (e) {
         e.preventDefault();
 

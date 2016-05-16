@@ -22,7 +22,7 @@ $('.check-in').each(function () {
                 })
                 .fail(function (err) {
                     console.log(err);
-                })
+                });
             },
             function (error) {
                 console.log(error);

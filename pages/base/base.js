@@ -16,7 +16,6 @@ $(function () {
             console.log(msg);
             window.location = '/';
         })
-
         .fail(function (msg) {
             console.log(msg);
         });

@@ -20,13 +20,13 @@ $('.commentForm').each(function () {
             }
         })
         .done(function (msg) {
-            var comment =  $('<div></div>', {
-                class: 'panel panel-default',
+            var comment = $('<div></div>', {
+                class: 'panel panel-default'
             });
             var heading = $('<div></div>', {
                 class: 'panel-heading'
             });
-            var body =  $('<div></div>', {
+            var body = $('<div></div>', {
                 class: 'panel-body',
                 text: msg.text
             });
@@ -39,10 +39,10 @@ $('.commentForm').each(function () {
             $('<a></a>', {
                 href: '/user/' + msg.url,
                 class: 'user-link',
-                text:  ' ' + msg.author
+                text: ' ' + msg.author
             }).appendTo(heading);
 
-            commentSection.append(comment)
+            commentSection.append(comment);
 
             form.find('textarea').val('');
             form.find('[type="submit"]').prop('disabled', true);

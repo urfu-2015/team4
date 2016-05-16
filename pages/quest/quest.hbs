@@ -58,6 +58,7 @@
                     <div class="reviews">
                         <h3 class="description-title">Отзывы:</h3>
                         <section class="reviews-list">
+                        {{#if comments.length}}
                             {{#each comments}}
                                 <div class="review">
                                     <div class="review-heading">
@@ -70,6 +71,9 @@
                                     </div>
                                 </div>
                             {{/each}}
+                        {{else}}
+                            <div>Пока никто не оставил отзывов</div>
+                        {{/if}}
                         </section>
                         {{#if commonData.user}}
                             <form action='' id="review" class="commentForm" data-name="{{title}}" method="post">

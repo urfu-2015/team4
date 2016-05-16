@@ -121,6 +121,6 @@ module.exports.startQuest = (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            res.status(400)
+            res.status(400);
         });
 };

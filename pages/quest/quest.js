@@ -41,12 +41,12 @@ $(function () {
         var commentSection = form.prev('section');
 
         $.ajax({
-                method: 'POST',
-                url: '/quest-comment',
-                data: {
-                    name: name, text: text
-                }
-            })
+            method: 'POST',
+            url: '/quest-comment',
+            data: {
+                name: name, text: text
+            }
+        })
             .done(function (msg) {
                 var comment = $('<div></div>', {
                     class: 'review'

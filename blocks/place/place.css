@@ -33,14 +33,13 @@
     width: 90%;
 }
 
-
 .success-checkIn
 {
     position: absolute;
     top: 2px;
     right: 2px;
     font-size: 100px;
-    color: #A8CC77;
+    color: #a8cc77;
 }
 
 @media screen and (min-width: 768px)

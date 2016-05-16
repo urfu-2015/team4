@@ -8,18 +8,18 @@ function checkIn() {
         timeout: 10000
     };
     var button = this;
-    
+
     navigator.geolocation.getCurrentPosition(
         function (position) {
             $.ajax({
-                    url: '/quest/checkin/',
-                    type: 'POST',
-                    data: {
-                        name: name,
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    }
-                })
+                url: '/quest/checkin/',
+                type: 'POST',
+                data: {
+                    name: name,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }
+            })
                 .done(function () {
                     console.log('checkIn');
                     var checkIn = $('<span></span>', {

@@ -1,7 +1,3 @@
-.panel.main > .panel-body
-{
-    display: none;
-}
 
 .panel.main > .panel-heading
 {
@@ -10,14 +6,21 @@
     border: none;
 }
 
+.comment-icon
+{
+    margin-bottom: 10px;
+    background-image: none;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+}
+
 .panel.main
 {
     border-color: #7ec2c0;
-}
-
-.panel.main > .panel-heading:hover
-{
-    cursor: pointer;
+    text-align: left;
 }
 
 .comment-list .panel
@@ -76,5 +79,9 @@
     margin: 20px 5px 20px 0;
     padding: 10px;
     background-image: none;
+}
+
+@media screen and (min-width: 768px)
+{
 }
 

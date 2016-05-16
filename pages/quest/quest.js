@@ -1,22 +1,10 @@
 'use strict';
 
 require('./quest.css');
-require('../../blocks/place/place.js');
 require('../../blocks/comments/comments.js');
+var checkInFunc = require('../../blocks/place/place.js').checkIn;
 
 $(function () {
-    $('.panel.main > .panel-heading').each(function () {
-        $(this).click(function () {
-            var last = $(this).next();
-
-            if ($(last).css('display') === 'none') {
-                $(last).css('display', 'block');
-            } else {
-                $(last).css('display', 'none');
-            }
-        });
-    });
-
     $('#quest-like').change(function () {
         var title = $('#quest-title').html();
         var valueInput = $('#likes-count');
@@ -67,7 +55,7 @@ $(function () {
                     text: 'Check-in',
                     'data-name': name
                 });
-
+                checkIn.click(checkInFunc);
                 $(this).append(checkIn);
             });
         })

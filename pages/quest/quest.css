@@ -1,18 +1,3 @@
-.panel.main > .panel-body
-{
-    display: none;
-}
-
-.panel.main
-{
-    text-align: left;
-}
-
-.panel.main > .panel-heading:hover
-{
-    cursor: pointer;
-}
-
 .like
 {
     width: 50px;

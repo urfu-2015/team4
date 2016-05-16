@@ -3,6 +3,7 @@
 const debug = require('debug')('team4:controllers:quests');
 
 const fs = require('fs');
+const crypto = require('crypto');
 const multer = require('multer');
 const tr = require('transliteration');
 
@@ -126,7 +127,9 @@ const storage = multer.diskStorage({
             fs.mkdirSync('tmp/');
         }
 
-        const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
+        const dir = 'tmp/' + crypto.createHash('md5').update(
+                tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'})
+            ).digest('hex');
 
         fs.mkdir(dir, e => {
             if (!e || (e && e.code === 'EEXIST')) {
@@ -158,7 +161,7 @@ const storage = multer.diskStorage({
 
         const fileType = file.originalname.replace(/.+(\.\w{3,4})$/, '$1');
 
-        cb(null, fileName + fileType);
+        cb(null, crypto.createHash('md5').update(fileName).digest('hex') + fileType);
     }
 });
 
@@ -168,7 +171,9 @@ exports.upload = upload.array('input-file-preview');
 
 exports.create = (req, res) => {
     debug('create');
-    const dir = 'tmp/' + tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'});
+    const dir = 'tmp/' + crypto.createHash('md5').update(
+            tr.slugify(req.body['title-quest'], {lowercase: true, separator: '-'})
+        ).digest('hex');
 
     flickr(dir)
         .then(urls => {

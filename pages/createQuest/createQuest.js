@@ -105,15 +105,15 @@ var addQuestForm = {
         this._initMap($newPlace);
     },
 
-    _removePlace: function (event) {
-        $(event.target).closest(this._$place.selector).fadeOut('medium', function () {
+    _removePlace: function (e) {
+        $(e.target).closest(this._$place.selector).fadeOut('medium', function () {
             $(this).remove();
             validator.updateInputs();
         });
     },
 
-    _showPreview: function (event) {
-        var $input = $(event.target);
+    _showPreview: function (e) {
+        var $input = $(e.target);
         var $parent = $input.closest(this._$fileInputDiv.selector);
         var $previewPlace = $parent.find(this._$customImagePreview.selector);
         var $fileName = $parent.find(this._$imagePreviewFileName.selector);
@@ -136,8 +136,8 @@ var addQuestForm = {
         reader.readAsDataURL(file);
     },
 
-    _clearPreview: function (event) {
-        var $button = $(event.target);
+    _clearPreview: function (e) {
+        var $button = $(e.target);
         var $parent = $button.closest(this._$fileInputDiv.selector);
         var $icon = $parent.find(this._$imagePreviefFileNameIcon);
 

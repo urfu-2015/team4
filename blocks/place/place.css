@@ -20,7 +20,7 @@
 .img
 {
     overflow: hidden;
-    margin: 9px 9px 0 9px;
+    margin: 0 auto 9px;
     position: relative;
 }
 
@@ -107,9 +107,5 @@
     .place .caption
     {
         padding: 5px 0;
-    }
-
-    .statistics
-    {
     }
 }

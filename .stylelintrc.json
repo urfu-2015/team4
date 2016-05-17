@@ -7,8 +7,6 @@
     "block-closing-brace-newline-before": "always"
   },
   "ignoreFiles": [
-    "public/*",
-    "pages/createQuest/bootstrap-combobox.css",
-    "presentation/*"
+    "public/*"
   ]
 }

@@ -52,15 +52,16 @@ exports.userPage = (req, res) => {
     debug('userPage');
     let users = userModel(req.db);
     let quests = questsModel(req.db);
+
     var response = {
         username: req.params.name
     };
+
     let user;
 
     users.isUserExist(req.params.name)
         .then(users => {
             if (users) {
-
                 return req.params.name;
             }
 

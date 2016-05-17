@@ -8,51 +8,6 @@ require('../../blocks/yandexMap/yandexMap.js');
 var validator = require('../../lib/forms/forms');
 
 var addQuestForm = {
-    _initLocationSearch: function (place) {
-        var combobox = place.find('.combobox');
-        combobox.combobox({
-            matcher: function () {
-                return true;
-            }
-        });
-        combobox = combobox.combobox.get();
-        var setPlacemark = this._setPlacemark;
-        var addressInputField = place.find('input.combobox');
-        var coordsInputField = place.find('.combobox-container > input:first-child');
-        coordsInputField.attr('name', 'geo-place');
-        coordsInputField.addClass('form-control js-coordinates-place');
-        addressInputField.addClass('form-control js-address-field');
-        place.find('.combobox-container > input:first-child').change(function () {
-            if (combobox.selected) {
-                setPlacemark(place, $(this).val().split(','), true);
-            }
-        });
-        place.find('input.combobox').keyup(function () {
-            var placemark = place.map.geoObjects.get(0);
-            if (placemark && !combobox.selected) {
-                placemark.options.set('visible', false);
-            }
-            var userInput = $(this).val();
-            ymaps.geocode(userInput).then(function (res) { //eslint-disable-line
-                var it = res.geoObjects.getIterator();
-                place.find('select.combobox').empty();
-                place.find('select.combobox').append('<option></option>');
-                var placeChoise;
-                while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
-                    var address = placeChoise.properties.get('text');
-                    var coords = placeChoise.geometry.getCoordinates().join(',');
-                    var newOption = '<option value="' + coords + '">' + address + '</option>';
-                    place.find('select.combobox').append(newOption);
-                }
-                combobox.refresh();
-                combobox.lookup();
-                combobox.show();
-            },
-            function (err) {
-                console.log('err', err);
-            });
-        });
-    },
     init: function () {
         this._collectData();
         validator.init();
@@ -180,11 +135,14 @@ var addQuestForm = {
                     maximumAge: 50000,
                     timeout: 10000
                 };
+
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
                         var coords = [position.coords.latitude, position.coords.longitude];
+
                         this._setPlacemark(place, coords, true);
                     }.bind(this),
+
                     function (error) {
                         console.log(error);
                     },
@@ -193,9 +151,7 @@ var addQuestForm = {
             }.bind(this)
         );
 
-        $(document).ready(function () {
-            this._initLocationSearch(place);
-        }.bind(this));
+        this._initLocationSearch(place);
     },
 
     _setPlacemark: function (place, location, isCentered) {
@@ -215,6 +171,7 @@ var addQuestForm = {
             var address = nearest.properties.get('text');
 
             var placemark = place.map.geoObjects.get(0);
+
             if (placemark) {
                 if (!placemark.options.get('visible')) {
                     placemark.options.set('visible', true);
@@ -238,6 +195,66 @@ var addQuestForm = {
             addressField.val(address);
         };
         ymaps.geocode(location).then(cb); // eslint-disable-line
+    },
+
+    _initLocationSearch: function (place) {
+        var combobox = place.find('.combobox');
+
+        combobox.combobox({
+            matcher: function () {
+                return true;
+            }
+        });
+
+        combobox = combobox.combobox.get();
+
+        var setPlacemark = this._setPlacemark;
+        var addressInputField = place.find('input.combobox');
+        var coordsInputField = place.find('.combobox-container > input:first-child');
+
+        coordsInputField.attr('name', 'geo-place');
+        coordsInputField.addClass('form-control');
+        addressInputField.addClass('form-control');
+
+        place.find('input.combobox').keyup(function () {
+            var placemark = place.map.geoObjects.get(0);
+
+            if (placemark && !combobox.selected) {
+                placemark.options.set('visible', false);
+            }
+
+            var userInput = $(this).val();
+
+            ymaps.geocode(userInput).then(function (res) { //eslint-disable-line
+                    var it = res.geoObjects.getIterator();
+
+                    place.find('select.combobox').empty();
+                    place.find('select.combobox').append('<option></option>');
+
+                    var placeChoise;
+
+                    while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
+                        var address = placeChoise.properties.get('text');
+                        var coords = placeChoise.geometry.getCoordinates().join(',');
+                        var newOption = '<option value="' + coords + '">' + address + '</option>';
+
+                        place.find('select.combobox').append(newOption);
+                    }
+
+                    combobox.refresh();
+                    combobox.lookup();
+                    combobox.show();
+                },
+                function (err) {
+                    console.log(err);
+                });
+        });
+
+        place.find('.combobox-container > input:first-child').change(function () {
+            if (combobox.selected) {
+                setPlacemark(place, $(this).val().split(','), true);
+            }
+        });
     }
 };
 

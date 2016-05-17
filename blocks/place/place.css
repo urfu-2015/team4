@@ -14,6 +14,7 @@
 {
     width: 100%;
     max-width: 100%;
+    margin: auto;
 }
 
 .img
@@ -28,14 +29,13 @@
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
     max-width: 80%;
-    display: inline-block;
-    margin: 0 auto 10px 30px;
+    margin: 10px auto 10px auto;
 }
 
 .place-head
 {
     display: inline-block;
-    margin: 0 auto;
+    margin: 5px auto;
     width: 100%;
     position: relative;
 }
@@ -81,7 +81,6 @@
 
     .img
     {
-        margin: 5% auto 0;
         width: 90%;
         max-height: 600px;
         padding: 0;
@@ -94,7 +93,7 @@
 
     .success-checkIn
     {
-        font-size: 150px;
+        font-size: 90px;
         right: 10px;
         top: 10px;
     }
@@ -102,6 +101,7 @@
     .place-head
     {
         width: 90%;
+        margin: 10px auto;
     }
 
     .place .caption

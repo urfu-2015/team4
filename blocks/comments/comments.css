@@ -22,7 +22,7 @@
     display: inline-block;
     position: absolute;
     left: 2px;
-    top: 30px;
+    top: -3px;
     font-size: 30px;
 }
 
@@ -30,7 +30,8 @@
 {
     font-size: 20px;
     text-align: left;
-    margin: auto auto 8px 35px;
+    margin: auto auto 10px 35px;
+    cursor: pointer;
 }
 
 .panel.main
@@ -102,6 +103,6 @@
     .comment-icon
     {
         font-size: 30px;
-        top: 32px;
+        top: -2px;
     }
 }

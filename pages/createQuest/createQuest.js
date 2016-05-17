@@ -19,7 +19,7 @@ var addQuestForm = {
         var setPlacemark = this._setPlacemark;
         var addressInputField = place.find('input.combobox');
         var coordsInputField = place.find('.combobox-container > input:first-child');
-        coordsInputField.attr('name','geo-place');
+        coordsInputField.attr('name', 'geo-place');
         coordsInputField.addClass('form-control js-coordinates-place');
         addressInputField.addClass('form-control js-address-field');
         place.find('.combobox-container > input:first-child').change(function () {
@@ -41,7 +41,7 @@ var addQuestForm = {
                 while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
                     var address = placeChoise.properties.get('text');
                     var coords = placeChoise.geometry.getCoordinates().join(',');
-                    var newOption = '<option value="'+coords+'">'+address+'</option>';
+                    var newOption = '<option value="' + coords + '">' + address + '</option>';
                     place.find('select.combobox').append(newOption);
                 }
                 combobox.refresh();
@@ -193,7 +193,7 @@ var addQuestForm = {
             }.bind(this)
         );
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             this._initLocationSearch(place);
         }.bind(this));
     },
@@ -233,7 +233,7 @@ var addQuestForm = {
             if (isCentered) {
                 place.map.setCenter(coords, 17);
             }
-            
+
             coordinatesField.val(coords);
             addressField.val(address);
         };

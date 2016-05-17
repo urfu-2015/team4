@@ -25,12 +25,13 @@ function checkIn() {
                 var checkIn = $('<span></span>', {
                     class: 'glyphicon glyphicon-ok-circle success-checkIn'
                 });
+                swal("Отлично!", "Вы успешно нашли место!", "success");
                 var container = $(button).parent().prev();
                 $(container).append(checkIn);
                 $(button).remove();
             })
             .fail(function (err) {
-                console.log(err);
+                swal(err.responseText);
             });
         },
         function (error) {

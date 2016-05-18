@@ -234,12 +234,12 @@ var addQuestForm = {
                 var placeChoise;
 
                 while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
-                        var address = placeChoise.properties.get('text');
-                        var coords = placeChoise.geometry.getCoordinates().join(',');
-                        var newOption = '<option value="' + coords + '">' + address + '</option>';
+                    var address = placeChoise.properties.get('text');
+                    var coords = placeChoise.geometry.getCoordinates().join(',');
+                    var newOption = '<option value="' + coords + '">' + address + '</option>';
 
-                        place.find('select.combobox').append(newOption);
-                    }
+                    place.find('select.combobox').append(newOption);
+                }
 
                 combobox.refresh();
                 combobox.lookup();

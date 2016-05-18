@@ -4,11 +4,9 @@ require('./index.css');
 
 $(function () {
     var skip = 3;
+    var $loadGif = $('.more-loading-gif');
 
-    /* global $: true */
-    $('#getMore').click(function (e) {
-        e.preventDefault();
-
+    function getMore() {
         $.ajax({
             method: "POST",
             url: "/get-more-quests",
@@ -17,34 +15,54 @@ $(function () {
                 get: 3
             }
         })
-            .done(function (data) {
-                console.log(data);
-                skip += data.quests.length;
+        .done(function (data) {
+            console.log(data);
 
-                data.quests.forEach(function (quest) {
-                    var newElem = $('<div></div>', {
-                        class: 'col-lg-12 text-center'
-                    });
+            if (data.quests.length == 0) {
+                $loadGif.fadeOut('medium');
 
-                    $('<img>', {
-                        class: 'img-responsive img-border img-full',
-                        src: quest.photo,
-                        alt: quest.title
-                    }).appendTo(newElem);
+                return;
+            }
 
-                    $('<h2></h2>', {
-                        text: quest.title
-                    }).appendTo(newElem);
+            skip += data.quests.length;
 
-                    $('<a></a>', {
-                        href: '/quest/' + quest.url,
-                        class: 'btn btn-default btn-lg',
-                        text: 'Посмотреть'
-                    }).appendTo(newElem);
-
-                    newElem.append('<hr>');
-                    $('#list-of-quests').append(newElem);
+            data.quests.forEach(function (quest) {
+                var $newElem = $('<div></div>', {
+                    class: 'text-center'
                 });
+
+                var $imgBox = $('<div></div>', {
+                    class: 'img-box'
+                }).appendTo($newElem);
+
+                $('<img>', {
+                    class: 'img-responsive img-border img-full',
+                    src: quest.photo,
+                    alt: quest.title
+                }).appendTo($imgBox);
+
+                $('<h2></h2>', {
+                    text: quest.title
+                }).appendTo($newElem);
+
+                $('<a></a>', {
+                    href: '/quest/' + quest.url,
+                    class: 'btn btn-default btn-lg',
+                    text: 'Посмотреть'
+                }).appendTo($newElem);
+
+                $newElem.append('<hr>');
+                $('#list-of-quests').append($newElem);
+
+                $loadGif.fadeOut('medium');
             });
+        });
+    }
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            $loadGif.fadeIn('medium');
+            setTimeout(getMore, 500);
+        }
     });
 });

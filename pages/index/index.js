@@ -4,6 +4,7 @@ require('./index.css');
 
 $(function () {
     var skip = 3;
+    var end = false;
     var $loadGif = $('.more-loading-gif');
 
     function getMore() {
@@ -18,7 +19,8 @@ $(function () {
         .done(function (data) {
             console.log(data);
 
-            if (data.quests.length == 0) {
+            if (!end && data.quests.length == 0) {
+                end = true;
                 $loadGif.fadeOut('medium');
 
                 return;
@@ -52,17 +54,24 @@ $(function () {
                 }).appendTo($newElem);
 
                 $newElem.append('<hr>');
+
+                $newElem.hide();
+
                 $('#list-of-quests').append($newElem);
+
+                $newElem.fadeIn('medium');
 
                 $loadGif.fadeOut('medium');
             });
         });
     }
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            $loadGif.fadeIn('medium');
-            setTimeout(getMore, 500);
+            if (!end) {
+                $loadGif.fadeIn('medium');
+                setTimeout(getMore, 500);
+            }
         }
     });
 });

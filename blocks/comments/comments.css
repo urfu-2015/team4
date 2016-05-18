@@ -1,4 +1,3 @@
-
 .panel.main > .panel-heading
 {
     background-image: none;
@@ -39,6 +38,7 @@
 {
     border-color: #7ec2c0;
     text-align: left;
+    margin-top: 15px;
 }
 
 .comment-list .panel

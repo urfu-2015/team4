@@ -15,3 +15,7 @@ $(function () {
         });
     });
 });
+
+$(document).ready(function ($) {
+    $('#myTabExample a:first').tab('show');
+});

@@ -19,7 +19,7 @@ $(function () {
         .done(function (data) {
             console.log(data);
 
-            if (!end && data.quests.length == 0) {
+            if (!end && data.quests.length == 0) { // eslint-disable-line
                 end = true;
                 $loadGif.fadeOut('medium');
 
@@ -67,7 +67,7 @@ $(function () {
     }
 
     $(window).scroll(function () {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        if ($(window).scrollTop() + $(window).height() === $(document).height()) {
             if (!end) {
                 $loadGif.fadeIn('medium');
                 setTimeout(getMore, 500);

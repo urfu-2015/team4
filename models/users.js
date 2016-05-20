@@ -51,12 +51,6 @@ const login = user => {
 };
 
 const login_vk = user => {
-    /*
-    acssess_token
-    expires_in
-    user_id
-    name == domain
-     */
     return usersCollection
         .find({name: user.name})
         .toArray()
@@ -65,13 +59,17 @@ const login_vk = user => {
                 if (result.length) {
                     return result[0];
                 } else {
-                     return addUserVK(user)
+                    return addUserVK(user);
                 }
             },
             () => {
                 throw errors.mongoError;
             }
         );
+};
+
+const removeUser = user => {
+    usersCollection.remove({name:user.name});
 };
 
 const addUser = newUser => {
@@ -90,6 +88,7 @@ const addUser = newUser => {
 const addUserVK = newUser => {
     return isNameAvalible(newUser.name)
         .then(() => {
+            newUser.password = '';
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];
@@ -181,6 +180,7 @@ const operations = {
     addUser,
     login,
     login_vk,
+    removeUser,
     addQuestInProgress,
     removeQuestInProgress,
     questFinish,

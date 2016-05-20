@@ -38,3 +38,9 @@ $(function () {
         });
     });
 });
+
+window.onload = function () {
+    document.getElementById('vk').setAttribute('href', 'https://oauth.vk.com/authorize?' +
+        'client_id=5471140&display=page&redirect_uri=' + window.location.origin +
+        '/auth-vk&scope=email&response_type=code&v=5.52');
+};

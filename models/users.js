@@ -50,32 +50,10 @@ const login = user => {
         );
 };
 
-const login_vk = user => {
-    return usersCollection
-        .find({name: user.name})
-        .toArray()
-        .then(
-            result => {
-                if (result.length) {
-                    return result[0];
-                } else {
-                    return addUserVK(user);
-                }
-            },
-            () => {
-                throw errors.mongoError;
-            }
-        );
-};
-
-const removeUser = user => {
-    usersCollection.remove({name:user.name});
-};
-
-const addUser = newUser => {
+const addUserVK = newUser => {
     return isNameAvalible(newUser.name)
         .then(() => {
-            newUser.password = getHash(newUser.password);
+            newUser.password = '';
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];
@@ -85,10 +63,31 @@ const addUser = newUser => {
         });
 };
 
-const addUserVK = newUser => {
+const loginVK = user => {
+    return usersCollection
+        .find({name: user.name})
+        .toArray()
+        .then(
+            result => {
+                if (result.length) {
+                    return result[0];
+                }
+                return addUserVK(user);
+            },
+            () => {
+                throw errors.mongoError;
+            }
+        );
+};
+
+const removeUser = user => {
+    usersCollection.remove({name: user.name});
+};
+
+const addUser = newUser => {
     return isNameAvalible(newUser.name)
         .then(() => {
-            newUser.password = '';
+            newUser.password = getHash(newUser.password);
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];
@@ -178,7 +177,7 @@ function getNameById(url) {
 const operations = {
     addUser,
     login,
-    login_vk,
+    loginVK,
     removeUser,
     addQuestInProgress,
     removeQuestInProgress,

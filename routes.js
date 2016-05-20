@@ -11,7 +11,7 @@ module.exports = function (app) {
     app.get('/', pages.index);
     app.get('/popular', pages.index);
     app.post('/user/login', users.validate, users.login);
-    app.get('/auth-vk', vk.auth, users.login_vk);
+    app.get('/auth-vk', vk.auth, users.loginVK);
     app.post('/user/reg', users.validate, users.register);
     app.post('/user/logout', users.logout);
     app.get('/user/:name', pages.userPage);

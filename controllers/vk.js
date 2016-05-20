@@ -6,11 +6,9 @@ const request = require('request-promise');
 
 const usersModel = require('../models/users.js');
 
-
 module.exports.auth = (req, res, next) => {
     debug('auth');
     if (req.query.code) {
-
         let userInfo = {};
         let users = usersModel(req.db);
 
@@ -19,7 +17,6 @@ module.exports.auth = (req, res, next) => {
             transform: JSON.parse
         })
             .then(body => {
-
                 Object.assign(userInfo, body);
                 request({
                     uri: uriUserInfo(body.user_id, userInfo.access_token),
@@ -27,12 +24,13 @@ module.exports.auth = (req, res, next) => {
                 })
 
                 .then(body => {
-                    Object.assign(userInfo, {name:body.response[0].domain});
-                    return userInfo;})
+                    Object.assign(userInfo, {name: body.response[0].domain});
+                    return userInfo;
+                })
 
-                .then(users.login_vk)
+                .then(users.loginVK)
 
-                .then((result) => {
+                .then(result => {
                     req.name = result.name;
                     next();
                 })
@@ -46,16 +44,16 @@ module.exports.auth = (req, res, next) => {
     }
 };
 
-
-function uriUserInfo(user_id, access_token) {
+function uriUserInfo(userId, accessToken) {
     return 'https://api.vk.com/method/users.get' +
-        '?fields=domain&user_id=' + user_id + '&v=5.52&access_token=' + access_token;
+        '?fields=domain&user_id=' + userId + '&v=5.52&access_token=' + accessToken;
 }
 
 function uriAccessToken(isDev, code) {
-    let redirect_uri = 'http://' + (isDev ?
+    let redirectUri = 'http://' + (isDev ?
             'localhost:3000' : 'dream-team-4.herokuapp.com') + '/auth-vk';
-    return 'https://oauth.vk.com/access_token?client_id=5471140&client_secret=ydvR6wzaC6IHyMMJYawU&' +
-        'redirect_uri=' + redirect_uri + '&code=' + code;
+    return 'https://oauth.vk.com/access_token?' +
+        'client_id=5471140&client_secret=ydvR6wzaC6IHyMMJYawU&' +
+        'redirect_uri=' + redirectUri + '&code=' + code;
 }
 

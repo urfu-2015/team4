@@ -64,13 +64,17 @@ $(function () {
     });
 
     $('.insta-img').click(function () {
-        var placeLatitude =  parseFloat($(this).data('latitude'));
+        var placeLatitude = parseFloat($(this).data('latitude'));
         var placeLongitude = parseFloat($(this).data('longitude'));
+        console.log(placeLatitude, placeLongitude);
     });
 
-    $('.add-route-btn').click(function () {ymaps.ready(setRoute(this));});
+    $('.add-route-btn').click(function () {
+        ymaps.ready(setRoute(this)); //eslint-disable-line
+    });
+
     var setRoute = function (obj) {
-        var placeLatitude =  parseFloat($(obj).data('latitude'));
+        var placeLatitude = parseFloat($(obj).data('latitude'));
         var placeLongitude = parseFloat($(obj).data('longitude'));
 
         var map = $(obj).data('target').split('#')[1];
@@ -83,7 +87,7 @@ $(function () {
         navigator.geolocation.getCurrentPosition(
             function (position) {
                 if (!routeMap) {
-                    routeMap = new ymaps.Map(map, {
+                    routeMap = new ymaps.Map(map, { //eslint-disable-line
                         center: [placeLatitude, placeLongitude],
                         zoom: 10,
                         controls: []
@@ -91,9 +95,9 @@ $(function () {
                 }
                 var userCoords = [position.coords.latitude, position.coords.longitude];
                 // тестовая точка
-                ymaps.route([
-                    { type: 'wayPoint', point: userCoords },
-                    { type: 'wayPoint', point: [placeLatitude, placeLongitude] }
+                ymaps.route([ //eslint-disable-line
+                    {type: 'wayPoint', point: userCoords},
+                    {type: 'wayPoint', point: [placeLatitude, placeLongitude]}
                 ], {
                     mapStateAutoApply: true
                 }).then(function (route) {
@@ -104,7 +108,9 @@ $(function () {
                     routeMap.geoObjects.add(route);
                 });
             },
-            function (error) {console.log(error);},
+            function (error) {
+                console.log(error);
+            },
             options
         );
     };

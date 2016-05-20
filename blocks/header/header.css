@@ -127,7 +127,7 @@ footer p
 .intro-text
 {
     text-transform: uppercase;
-    font-size: 2.50em;
+    font-size: 2.5em;
     font-weight: 500;
     letter-spacing: 1px;
 }
@@ -251,4 +251,27 @@ footer p
         display: table;
         clear: both;
     }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px)
+{
+    .navbar .container
+    {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1000px)
+{
+    .container .nav > li a
+    {
+        padding: 35px 10px;
+        font-size: 15px;
+    }
+}
+
+#search-input
+{
+    font-size: 16px;
 }

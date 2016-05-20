@@ -107,6 +107,10 @@ function removeQuestInProgress(name, questId) {
     return usersCollection.update({name}, {$pull: {inProgressQuests: questId}});
 }
 
+function addCreatedQuest(name, questId) {
+    return usersCollection.update({name}, {$push: {createdQuests: questId}});
+}
+
 function getQuestsInProgress(name) {
     return usersCollection.find({name})
        .toArray()
@@ -184,7 +188,8 @@ const operations = {
     getFinishedQuests,
     isUserExist,
     getPublicUserData,
-    getNameById
+    getNameById,
+    addCreatedQuest
 };
 
 module.exports = db => {

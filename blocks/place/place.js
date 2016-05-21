@@ -57,16 +57,57 @@ function checkIn() {
 }
 
 module.exports.checkIn = checkIn;
+
 var routeMap;
+
 $(function () {
     $('.check-in').each(function () {
         $(this).click(checkIn);
     });
 
     $('.insta-img').click(function () {
-        var placeLatitude = parseFloat($(this).data('latitude'));
-        var placeLongitude = parseFloat($(this).data('longitude'));
-        console.log(placeLatitude, placeLongitude);
+        var $linksPlace = $($(this).data('target')).find('#links').empty();
+
+        var $placeLatitude = parseFloat($(this).data('latitude'));
+        var $placeLongitude = parseFloat($(this).data('longitude'));
+        console.log($placeLatitude, $placeLongitude);
+    
+        var loadGif = $('#load-insta-gif');
+        
+        loadGif.show();
+        
+        $.ajax({
+            url: '/get-location-insta-photos' + '/' + $placeLatitude + '/' + $placeLongitude,
+            type: 'GET'
+        })
+        .done(function (msg) {
+
+            var ans = JSON.parse(msg);
+
+            ans.forEach(function (item) {
+                var elem = $('<a />',
+                    {
+                        href: item.photo,
+                        title: 'photo'
+                    }
+                );
+
+                elem.attr('data-gallery', '');
+
+                elem.append($('<img >', {
+                    style: 'display: inline-block; margin: 10px;',
+                    src: item.thumnail,
+                    alt: 'thumb'
+                }));
+                $linksPlace.append(elem);
+            });
+
+            $('#load-insta-gif').hide();
+            $linksPlace.fadeIn('medium');
+        })
+        .fail(function (err) {
+            console.log(err.responseText); //eslint-disable-line
+        });
     });
 
     $('.add-route-btn').click(function () {
@@ -84,6 +125,7 @@ $(function () {
             maximumAge: 50000,
             timeout: 10000
         };
+
         navigator.geolocation.getCurrentPosition(
             function (position) {
                 if (!routeMap) {
@@ -94,7 +136,7 @@ $(function () {
                     });
                 }
                 var userCoords = [position.coords.latitude, position.coords.longitude];
-                // тестовая точка
+
                 ymaps.route([ //eslint-disable-line
                     {type: 'wayPoint', point: userCoords},
                     {type: 'wayPoint', point: [placeLatitude, placeLongitude]}

@@ -22,6 +22,11 @@ const errors = {
     wrongData: {
         code: 1,
         message: 'Неверные логин/пароль'
+    },
+
+    mailExist: {
+        code: 1,
+        message: 'Почта уже зарегистрирована'
     }
 };
 
@@ -52,6 +57,7 @@ const login = user => {
 
 const addUser = newUser => {
     return isNameAvalible(newUser.name)
+        .then(() => isEmailAvalible(newUser.email))
         .then(() => {
             newUser.password = getHash(newUser.password);
             newUser.finishedQuests = [];
@@ -115,6 +121,20 @@ function isNameAvalible(newName) {
                 reject(errors.mongoError);
             } else if (result.length) {
                 reject(errors.nameExist);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
+function isEmailAvalible(email) {
+    return new Promise((resolve, reject) => {
+        usersCollection.find({email}).toArray((err, result) => {
+            if (err) {
+                reject(errors.mongoError);
+            } else if (result.length) {
+                reject(errors.mailExist);
             } else {
                 resolve();
             }

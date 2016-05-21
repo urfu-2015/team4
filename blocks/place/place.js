@@ -58,7 +58,7 @@ function checkIn() {
 
 module.exports.checkIn = checkIn;
 
-var routeMap;
+var routeMaps = {};
 
 $(function () {
     $('.check-in').each(function () {
@@ -71,11 +71,11 @@ $(function () {
         var $placeLatitude = parseFloat($(this).data('latitude'));
         var $placeLongitude = parseFloat($(this).data('longitude'));
         console.log($placeLatitude, $placeLongitude);
-    
+
         var loadGif = $('#load-insta-gif');
-        
+
         loadGif.show();
-        
+
         $.ajax({
             url: '/get-location-insta-photos' + '/' + $placeLatitude + '/' + $placeLongitude,
             type: 'GET'
@@ -119,6 +119,7 @@ $(function () {
         var placeLongitude = parseFloat($(obj).data('longitude'));
 
         var map = $(obj).data('target').split('#')[1];
+        $(obj).parent().find('.loading-map').show();
         console.log(placeLatitude, placeLongitude, map);
         var options = {
             enableHighAccuracy: true,
@@ -128,8 +129,8 @@ $(function () {
 
         navigator.geolocation.getCurrentPosition(
             function (position) {
-                if (!routeMap) {
-                    routeMap = new ymaps.Map(map, { //eslint-disable-line
+                if (!routeMaps[map]) {
+                    routeMaps[map] = new ymaps.Map(map, { //eslint-disable-line
                         center: [placeLatitude, placeLongitude],
                         zoom: 10,
                         controls: []
@@ -147,7 +148,8 @@ $(function () {
                         strokeColor: '0000ffff',
                         opacity: 0.9
                     });
-                    routeMap.geoObjects.add(route);
+                    routeMaps[map].geoObjects.add(route);
+                    $(obj).parent().find('.loading-map').hide();
                 });
             },
             function (error) {

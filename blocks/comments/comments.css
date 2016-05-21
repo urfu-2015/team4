@@ -24,7 +24,6 @@
     color: #666;
     display: inline-block;
     margin: 0 5px 10px 0;
-    font-size: 30px;
 }
 
 .comment-title
@@ -100,10 +99,3 @@
     padding: 10px;
     background-image: none;
 }
-
-input,
-textarea
-{
-    font-size: 19px !important;
-}
-

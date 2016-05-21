@@ -54,7 +54,7 @@ describe('test a user registration', function () {
             .post('/user/reg')
             .send({
                 name: 'testuser' + (new Date()).getTime(),
-                email: 'a@a' + (new Date()).getTime() + '.com' ,
+                email: 'a@a' + (new Date()).getTime() + '.com',
                 password: 'qwer'
             })
             .expect(200)

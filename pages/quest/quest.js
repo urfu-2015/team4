@@ -53,7 +53,7 @@ $(function () {
                 window.location = msg.redirect;
                 return;
             }
-            
+
             var comment = $('<div></div>', {
                 class: 'review'
             });

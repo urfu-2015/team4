@@ -226,25 +226,25 @@ var addQuestForm = {
             var userInput = $(this).val();
 
             ymaps.geocode(userInput).then(function (res) { //eslint-disable-line
-                    var it = res.geoObjects.getIterator();
+                var it = res.geoObjects.getIterator();
 
-                    place.find('select.combobox').empty();
-                    place.find('select.combobox').append('<option></option>');
+                place.find('select.combobox').empty();
+                place.find('select.combobox').append('<option></option>');
 
-                    var placeChoise;
+                var placeChoise;
 
-                    while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
-                        var address = placeChoise.properties.get('text');
-                        var coords = placeChoise.geometry.getCoordinates().join(',');
-                        var newOption = '<option value="' + coords + '">' + address + '</option>';
+                while ((placeChoise = it.getNext()) !== it.STOP_ITERATION) {
+                    var address = placeChoise.properties.get('text');
+                    var coords = placeChoise.geometry.getCoordinates().join(',');
+                    var newOption = '<option value="' + coords + '">' + address + '</option>';
 
-                        place.find('select.combobox').append(newOption);
-                    }
+                    place.find('select.combobox').append(newOption);
+                }
 
-                    combobox.refresh();
-                    combobox.lookup();
-                    combobox.show();
-                },
+                combobox.refresh();
+                combobox.lookup();
+                combobox.show();
+            },
 
                 function (err) {
                     console.log(err);

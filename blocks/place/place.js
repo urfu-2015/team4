@@ -67,15 +67,15 @@ $(function () {
     });
 
     $('.insta-img').click(function () {
-        var $linksPlace = $($(this).data('target')).find('#links').empty();
+        var $target = $(this).data('target');
+        var $linksPlace = $($target).find('.js-links').empty();
+        var $loadGif = $($target).find('.loading-insta-gif');
 
         var $placeLatitude = parseFloat($(this).data('latitude'));
         var $placeLongitude = parseFloat($(this).data('longitude'));
         console.log($placeLatitude, $placeLongitude);
 
-        var loadGif = $('#load-insta-gif');
-
-        loadGif.show();
+        $loadGif.show();
 
         $.ajax({
             url: '/get-location-insta-photos' + '/' + $placeLatitude + '/' + $placeLongitude, // eslint-disable-line
@@ -84,26 +84,33 @@ $(function () {
         .done(function (msg) {
             var ans = JSON.parse(msg);
 
-            ans.forEach(function (item) {
-                var elem = $('<a />',
-                    {
-                        href: item.photo,
-                        title: 'photo'
-                    }
-                );
+            if (ans.length) {
+                ans.forEach(function (item) {
+                    var elem = $('<a />',
+                        {
+                            href: item.photo,
+                            title: 'photo'
+                        }
+                    );
 
-                elem.attr('data-gallery', '');
+                    elem.attr('data-gallery', '');
 
-                elem.append($('<img >', {
-                    style: 'display: inline-block; margin: 10px;',
-                    src: item.thumnail,
-                    alt: 'thumb'
-                }));
-                $linksPlace.append(elem);
-            });
+                    elem.append($('<img >', {
+                        style: 'display: inline-block; margin: 10px;',
+                        src: item.thumnail,
+                        alt: 'thumb'
+                    }));
+                    $linksPlace.append(elem);
+                });
 
-            $('#load-insta-gif').hide();
-            $linksPlace.fadeIn('medium');
+                $loadGif.hide();
+                $linksPlace.fadeIn('medium');
+            } else {
+                $loadGif.hide();
+                $linksPlace.append(
+                    $('<p></p>').text('Здесь никто не чекинился :<')
+                ).fadeIn('medium');
+            }
         })
         .fail(function (err) {
             console.log(err.responseText); //eslint-disable-line

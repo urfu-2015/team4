@@ -1,6 +1,5 @@
 'use strict';
 
-require('./createQuest.css');
 require('../../blocks/yandexMap/yandexMap.js');
 require('./bootstrap-combobox.css');
 require('./bootstrap-combobox.js');
@@ -12,7 +11,8 @@ var addQuestForm = {
         this._collectData();
         validator.init();
         this._bindEvents();
-        this._$places.find('.js-place').find('.js-map-box').append(this._$templateMap.clone());
+        $('.js-map-box').append(this._$templateMap.clone());
+        $('.js-image-preview-filename').val(' ').change();
     },
 
     _collectData: function () {
@@ -40,11 +40,19 @@ var addQuestForm = {
             'change', this._$imagePreviewInputFile.selector, this._showPreview.bind(this)
         );
         this._$form.on('click', this._$imagePreviewClear.selector, this._clearPreview.bind(this));
+
         ymaps.ready( // eslint-disable-line
             function () {
                 var _this = this;
                 $('.one-place').each(function () {
-                    _this._initMap($(this));
+                    var place = $(this);
+                    _this._initMap(place);
+                    var $mapBox = place.find('.js-map-box');
+                    var coords = $mapBox.attr('coords');
+
+                    if (coords) {
+                        _this._setPlacemark(place, coords, true);
+                    }
                 });
             }.bind(this)
         );
@@ -254,7 +262,7 @@ var addQuestForm = {
             });
         });
 
-        place.find('.combobox-container > input:first-child').change(function () {
+        coordsInputField.change(function () {
             if (combobox.selected) {
                 setPlacemark(place, $(this).val().split(','), true);
             }
@@ -279,7 +287,7 @@ $(function () {
         $errorMessage.hide();
 
         $.ajax({
-            url: '/create-quest',
+            url: '/edit-quest',
             type: 'POST',
             data: formData,
             cache: false,

@@ -1,7 +1,6 @@
 'use strict';
 
 require('./quest.css');
-require('./bootstrap-image-gallery.css');
 require('../../blocks/comments/comments.js');
 
 var checkInFunc = require('../../blocks/place/place.js').checkIn;

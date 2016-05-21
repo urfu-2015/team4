@@ -11,7 +11,7 @@
     "tests": "mocha tests --recursive --timeout 15000",
     "prepush": "npm run lint && npm run tests",
     "watch": "webpack --progress --colors --watch",
-    "static": "surge -p ./public -d dream-team-4.surge.sh"
+    "static": "npm run build && surge -p ./public -d dream-team-4.surge.sh"
   },
   "dependencies": {
     "body-parser": "1.13.2",
@@ -30,6 +30,7 @@
     "multer": "1.1.0",
     "request-promise": "^3.0.0",
     "requestify": "0.1.17",
+    "surge": "^0.18.0",
     "transliteration": "0.1.1",
     "validator": "5.1.0"
   },

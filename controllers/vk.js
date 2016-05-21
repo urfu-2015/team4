@@ -17,7 +17,7 @@ module.exports.auth = (req, res, next) => {
             transform: JSON.parse
         })
         .then(body => {
-            Object.assign(userInfo, {user_id: body.user_id, email: body.email});
+            Object.assign(userInfo, {userId: body.user_id, email: body.email});
             request({
                 uri: uriUserInfo(body.user_id, body.access_token),
                 transform: JSON.parse

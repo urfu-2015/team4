@@ -6,6 +6,7 @@ require('../../blocks/comments/comments.js');
 var checkInFunc = require('../../blocks/place/place.js').checkIn;
 
 $(function () {
+
     $('#quest-like').change(function () {
         var title = $('#quest-title').html();
         var valueInput = $('#likes-count');

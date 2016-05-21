@@ -285,7 +285,7 @@ exports.checkin = (req, res) => {
 
 exports.instaPhotos = (req, res) => {
     debug('instaPhotos');
-    
+
     let lat = req.params.lat;
     let lng = req.params.lng;
     let radius = 100;

@@ -33,13 +33,13 @@ module.exports.auth = (req, res, next) => {
                 req.name = result.name;
                 next();
             })
-            .catch((err) => {
-                console.log(err);
+            .catch(err => {
+                console.error(err);
                 res.renderLayout('./pages/notFound/notFound.hbs', {text: err});
             });
         })
-        .catch((err) => {
-            console.log(err);
+        .catch(err => {
+            console.error(err);
             res.renderLayout('./pages/notFound/notFound.hbs', {text: err});
         });
     } else {

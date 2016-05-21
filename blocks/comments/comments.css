@@ -24,6 +24,7 @@
     color: #666;
     display: inline-block;
     margin: 0 5px 10px 0;
+    font-size: 30px;
 }
 
 .comment-title
@@ -100,10 +101,9 @@
     background-image: none;
 }
 
-@media screen and (min-width: 768px)
+input,
+textarea
 {
-    .comment-icon
-    {
-        font-size: 30px;
-    }
+    font-size: 19px !important;
 }
+

@@ -245,9 +245,8 @@ var addQuestForm = {
                 combobox.lookup();
                 combobox.show();
             },
-
             function (err) {
-                console.log(err);
+                console.error(err);
             });
         });
 

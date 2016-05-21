@@ -1,4 +1,5 @@
 require('./place.css');
+require('./bootstrap-image-gallery.css');
 
 function checkIn() {
     var name = $(this).data('name');

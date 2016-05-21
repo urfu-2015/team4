@@ -8,7 +8,6 @@ const app = require('../app.js');
 
 module.exports = () => {
     return (req, res, next) => {
-        console.log('render', req.cookies);
         debug('add renderLayout func');
         res.renderLayout = (path, context) => {
             if (!context) {

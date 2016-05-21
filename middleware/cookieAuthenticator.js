@@ -12,7 +12,6 @@ module.exports = () => {
     return (req, res, next) => {
         debug('check cookie');
         var userId = req.cookies.id;
-        console.log(req.cookies);
         var userMod = userModel(req.db);
 
         if (userId) {

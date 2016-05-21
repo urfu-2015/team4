@@ -6,6 +6,8 @@ install:
 - npm install
 script:
 - npm run lint && npm run tests
+after_success:
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run static'
 deploy:
   provider: heroku
   api_key: 134bf008-8e37-471d-8b3c-1d1e0509e10d

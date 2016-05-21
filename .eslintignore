@@ -2,5 +2,3 @@ public/
 blocks/header/horsey.js
 pages/createQuest/bootstrap-combobox.js
 presentation/
-lib/horsey.min.js
-webpack.config.js

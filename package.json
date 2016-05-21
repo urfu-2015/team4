@@ -1,6 +1,6 @@
 {
   "name": "team4",
-  "version": "0.1.0a",
+  "version": "0.1.1b",
   "private": true,
   "scripts": {
     "build": "webpack --progress --colors",

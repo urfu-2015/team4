@@ -30,6 +30,7 @@
     "multer": "1.1.0",
     "request-promise": "^3.0.0",
     "requestify": "0.1.17",
+    "surge": "^0.18.0",
     "transliteration": "0.1.1",
     "validator": "5.1.0"
   },

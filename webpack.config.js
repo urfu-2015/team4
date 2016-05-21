@@ -14,7 +14,8 @@ module.exports = {
         quest: './quest/quest.js',
         userPage: './userPage/userPage.js',
         createQuest: './createQuest/createQuest.js',
-        notFound: './notFound/notFound.js'
+        notFound: './notFound/notFound.js',
+        'horsey.min': '../lib/horsey.min.js'
     },
     devtool: 'source-map',
     output: {

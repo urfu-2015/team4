@@ -10,7 +10,8 @@
     "start": "node ./bin/www.js",
     "tests": "mocha tests --recursive --timeout 15000",
     "prepush": "npm run lint && npm run tests",
-    "watch": "webpack --progress --colors --watch"
+    "watch": "webpack --progress --colors --watch",
+    "static": "npm run build && surge -p ./public -d dream-team-4.surge.sh"
   },
   "dependencies": {
     "body-parser": "1.13.2",

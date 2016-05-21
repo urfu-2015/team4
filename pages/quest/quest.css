@@ -68,25 +68,30 @@
 .start-quest,
 .place .check-in
 {
-    background-color: #a8cc77;
-    background-image: none;
+    margin-bottom: 20px;
+    border: 1px solid #a8cc77;
     text-shadow: none;
     letter-spacing: 1px;
     text-transform: lowercase;
-    margin-bottom: 20px;
-    border: 1px solid #a8cc77;
+    background: none #a8cc77;
 }
 
 .start-quest:hover
 {
-    background-image: none;
-    background-color: #a8cc77;
+    background: none #a8cc77;
     border-color: #00a000;
 }
 
 .reg-ref-button
 {
     background-color: #a8cc77;
+}
+
+#start-quest
+{
+    max-width: 80%;
+    white-space: normal;
+    margin-bottom: 20px;
 }
 
 .reg-ref
@@ -123,6 +128,11 @@
 .reviews-list
 {
     margin-bottom: 10px;
+}
+
+#empty-reviews
+{
+    text-align: center;
 }
 
 .review-body

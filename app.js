@@ -37,6 +37,10 @@ app.use(mongo());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use((req, res, next) => {
+    console.log(req.cookies);
+    next();
+});
 app.use(cookieAuthenticator());
 
 require('./routes')(app);

@@ -53,7 +53,6 @@ const login = user => {
 const addUserVK = newUser => {
     return isNameAvalible(newUser.name)
         .then(() => {
-            newUser.password = '';
             newUser.finishedQuests = [];
             newUser.inProgressQuests = [];
             newUser.createdQuests = [];

@@ -11,7 +11,9 @@ const userModel = require('../models/users');
 module.exports = () => {
     return (req, res, next) => {
         debug('check cookie');
+        console.log('mongo', req.cookies);
         var userId = req.cookies.id;
+        console.log(req.cookies);
         var userMod = userModel(req.db);
 
         if (userId) {

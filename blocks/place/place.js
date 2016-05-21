@@ -36,9 +36,9 @@ function checkIn() {
                     });
                     var count = $('#' + countId);
                     count.html(msg.checkinCount);
-                    swal("Отлично!", "Вы нашли место!", "success");//eslint-disable-line
+                    swal("Отлично!", "Вы нашли место!", "success"); //eslint-disable-line
                     if (msg.isFinished) {
-                        swal("Поздравлем!", "Вы успешно завершили квест!", "success");//eslint-disable-line
+                        swal("Поздравлем!", "Вы успешно завершили квест!", "success"); //eslint-disable-line
                     }
                     var container = $(button).parent().prev();
                     $(container).append(checkIn);
@@ -71,17 +71,16 @@ $(function () {
         var $placeLatitude = parseFloat($(this).data('latitude'));
         var $placeLongitude = parseFloat($(this).data('longitude'));
         console.log($placeLatitude, $placeLongitude);
-    
+
         var loadGif = $('#load-insta-gif');
-        
+
         loadGif.show();
-        
+
         $.ajax({
-            url: '/get-location-insta-photos' + '/' + $placeLatitude + '/' + $placeLongitude,
+            url: '/get-location-insta-photos' + '/' + $placeLatitude + '/' + $placeLongitude, // eslint-disable-line
             type: 'GET'
         })
         .done(function (msg) {
-
             var ans = JSON.parse(msg);
 
             ans.forEach(function (item) {
@@ -117,9 +116,9 @@ $(function () {
     var setRoute = function (obj) {
         var placeLatitude = parseFloat($(obj).data('latitude'));
         var placeLongitude = parseFloat($(obj).data('longitude'));
+        console.log(placeLatitude, placeLongitude);
 
         var map = $(obj).data('target').split('#')[1];
-        console.log(placeLatitude, placeLongitude, map);
         var options = {
             enableHighAccuracy: true,
             maximumAge: 50000,

@@ -9,11 +9,6 @@
     margin: auto;
 }
 
-.form strong
-{
-    font-weight: 500;
-}
-
 .form a,
 .form a:hover,
 .form a:focus
@@ -48,103 +43,6 @@
 .form img
 {
     max-width: 100%;
-}
-
-.form .btn-link-1
-{
-    display: inline-block;
-    height: 50px;
-    background: #19b9e7;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 16px;
-    color: #fff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    margin: 5px;
-    padding: 16px 20px 0;
-}
-
-.form .btn-link-1:hover,
-.form .btn-link-1:focus,
-.form .btn-link-1:active
-{
-    outline: 0;
-    opacity: 0.6;
-    color: #fff;
-}
-
-.form .btn-link-1.btn-link-1-facebook
-{
-    background: #4862a3;
-}
-
-.form .btn-link-1.btn-link-1-twitter
-{
-    background: #55acee;
-}
-
-.form .btn-link-1.btn-link-1-google-plus
-{
-    background: #dd4b39;
-}
-
-.form .btn-link-1 i
-{
-    padding-right: 5px;
-    vertical-align: middle;
-    font-size: 20px;
-    line-height: 20px;
-}
-
-.form .btn-link-2
-{
-    display: inline-block;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid #fff;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 16px;
-    color: #fff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    margin: 5px;
-    padding: 15px 20px 0;
-}
-
-.form .btn-link-2:hover,
-.form .btn-link-2:focus,
-.form .btn-link-2:active,
-.form .btn-link-2:active:focus
-{
-    outline: 0;
-    opacity: 0.6;
-    background: rgba(0, 0, 0, 0.3);
-    color: #fff;
-}
-
-.form .inner-bg
-{
-    padding: 60px 0 80px;
-}
-
-.form .top-content .description
-{
-    margin: 20px 0 10px;
-}
-
-.form .top-content .description p
-{
-    opacity: 0.8;
-}
-
-.form .top-content .description a:hover,
-.form .top-content .description a:focus
-{
-    border-bottom: 1px dotted #fff;
 }
 
 .form .form-box
@@ -209,23 +107,6 @@
 .form .form-bottom form .input-error
 {
     border-color: #19b9e7;
-}
-
-.form .social-login
-{
-    margin-top: 35px;
-}
-
-.form .social-login-buttons
-{
-    margin-top: 25px;
-}
-
-.form .middle-border
-{
-    min-height: 300px;
-    margin-top: 170px;
-    border-right: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .form input[type="text"],
@@ -316,14 +197,6 @@
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-}
-
-.form .top-content .text,
-.form .top-content .text h1,
-.form .top-content .description a,
-.social-login h3
-{
-    color: #fff;
 }
 
 .form input[type="text"]:-moz-placeholder,

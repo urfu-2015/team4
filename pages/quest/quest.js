@@ -2,6 +2,7 @@
 
 require('./quest.css');
 require('../../blocks/comments/comments.js');
+
 var checkInFunc = require('../../blocks/place/place.js').checkIn;
 
 $(function () {
@@ -27,7 +28,7 @@ $(function () {
             $(valueInput).html(respond.count);
         })
         .fail(function (msg) {
-            console.log(msg);
+            console.error(msg);
             $(valueInput).html(oldValue);
             $(this).prop('checked', !$(this).prop('checked'));
         });
@@ -48,6 +49,10 @@ $(function () {
             }
         })
         .done(function (msg) {
+            if (msg && msg.redirect) {
+                window.location = msg.redirect;
+            }
+
             var comment = $('<div></div>', {
                 class: 'review'
             });
@@ -82,7 +87,7 @@ $(function () {
             form.find('[type="submit"]').prop('disabled', true);
         })
         .fail(function (msg) {
-            console.log(msg);
+            console.error(msg);
         });
     });
 
@@ -98,7 +103,11 @@ $(function () {
             url: '/start-quest/',
             data: {title}
         })
-        .done(function () {
+        .done(function (res) {
+            if (res && res.redirect) {
+                window.location = res.redirect;
+            }
+
             $(button).remove();
 
             $('.place .caption').each(function () {
@@ -108,12 +117,13 @@ $(function () {
                     text: 'Check-in',
                     'data-name': name
                 });
+
                 checkIn.click(checkInFunc);
                 $(this).append(checkIn);
             });
         })
         .fail(function (msg) {
-            console.log(msg);
+            console.error(msg);
             $(button).css('display', 'inline-block');
         });
     });

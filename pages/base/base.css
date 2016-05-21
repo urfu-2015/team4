@@ -8,6 +8,12 @@ body
     -o-background-size: cover;
 }
 
+input,
+input:active
+{
+    outline: none;
+}
+
 input::-webkit-input-placeholder
 {
     text-indent: 0;
@@ -56,9 +62,21 @@ input:focus:-ms-input-placeholder
     transition: text-indent 0.3s ease;
 }
 
+button,
+button:active
+{
+    outline: none !important;
+}
+
 .danger-message
 {
     display: none;
     padding: 10px 20px;
     text-align: center;
+}
+
+input,
+textarea
+{
+    font-size: 16px !important;
 }

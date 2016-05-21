@@ -245,10 +245,9 @@ var addQuestForm = {
                 combobox.lookup();
                 combobox.show();
             },
-
-                function (err) {
-                    console.log(err);
-                });
+            function (err) {
+                console.error(err);
+            });
         });
 
         place.find('.combobox-container > input:first-child').change(function () {
@@ -283,14 +282,14 @@ $(function () {
             contentType: false,
             processData: false
         })
-            .done(function (res) {
-                window.location = res.url;
-            })
-            .fail(function (res) {
-                $boxForm.show();
-                $boxLoadingGif.hide();
-                $errorMessage.empty().append(res.responseText).show();
-                $(window).scrollTo($errorMessage.selector, 500);
-            });
+        .done(function (res) {
+            window.location = res.url;
+        })
+        .fail(function (res) {
+            $boxForm.show();
+            $boxLoadingGif.hide();
+            $errorMessage.empty().append(res.responseText).show();
+            $(window).scrollTo($errorMessage.selector, 500);
+        });
     });
 });

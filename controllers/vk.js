@@ -53,7 +53,7 @@ function uriUserInfo(userId, accessToken) {
 }
 
 function uriAccessToken(isDev, code) {
-    let redirectUri = 'http://' + (isDev ?
+    let redirectUri = 'https://' + (isDev ?
             'localhost:3000' : 'dream-team-4.herokuapp.com') + '/auth-vk';
     return 'https://oauth.vk.com/access_token?' +
         'client_id=5471140&client_secret=ydvR6wzaC6IHyMMJYawU&' +

@@ -65,7 +65,8 @@
 }
 
 .start-quest,
-.place .check-in
+.place .check-in,
+.finished
 {
     margin-bottom: 20px;
     border: 1px solid #a8cc77;
@@ -73,6 +74,13 @@
     letter-spacing: 1px;
     text-transform: lowercase;
     background: none #a8cc77;
+}
+
+.finished
+{
+    margin: 10px -15px;
+    font-size: 20px;
+    padding: 10px;
 }
 
 .start-quest:hover

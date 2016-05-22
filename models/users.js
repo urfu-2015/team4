@@ -194,6 +194,13 @@ function getNameById(url) {
         });
 }
 
+const removeQuest = id => {
+    return usersCollection.updateMany(
+        {$or: [{inProgressQuests: id}, {finishedQuests: id}, {createdQuests: id}]},
+        {$pull: {inProgressQuests: id, finishedQuests: id, createdQuests: id}
+    });
+};
+
 const operations = {
     addUser,
     login,
@@ -207,7 +214,8 @@ const operations = {
     isUserExist,
     getPublicUserData,
     getNameById,
-    addCreatedQuest
+    addCreatedQuest,
+    removeQuest
 };
 
 module.exports = db => {

@@ -89,7 +89,12 @@ exports.userPage = (req, res) => {
                 .filter(quest => {
                     return user.createdQuests.find(q => q.equals(quest._id));
                 })
-                .map(filterFields(['title', 'photo', 'url']));
+                .map(filterFields(['title', 'photo', 'url']))
+                .map(data => {
+                    data.created = true;
+                    return data;
+                });
+            console.log('created', created);
             response.self = req.commonData.user === response.username;
             Object.assign(response, {finished, inProcess, created});
             res.renderLayout('./pages/userPage/userPage.hbs', response);

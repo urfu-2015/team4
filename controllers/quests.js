@@ -308,3 +308,19 @@ exports.instaPhotos = (req, res) => {
             res.json(JSON.stringify(photos));
         });
 };
+
+exports.remove = (req, res) => {
+    const quests = questsModel(req.db);
+    const title = req.body.title;
+    quests.getQuest(title)
+        .then(quest => {
+            if (!quest) {
+                res.status(400).send('Такого квеста не существует');
+                return;
+            }
+            const id = quest._id;
+            return Promise.all([quests.removeQuest(title), userModel(req.db).removeQuest(id)]);
+        })
+        .then(() => res.send('Квест успешно удален'))
+        .catch(() => res.status(500).send('Произошла ошибка. Попробуйте еще раз'));
+};

@@ -26,6 +26,7 @@ module.exports = function (app) {
     app.post('/quest-comment', authRequired, quests.addCommentToQuest);
     app.get('/create-quest', authRequired, pages.createQuest);
     app.post('/create-quest', authRequired, quests.upload, quests.create);
+    app.post('/remove-quest', authRequired, quests.remove);
     app.post('/get-quest-titles', pages.getTitles);
     app.get('/get-location-insta-photos/:lat/:lng', quests.instaPhotos);
     app.get('/search', pages.search);

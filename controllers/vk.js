@@ -13,7 +13,7 @@ module.exports.auth = (req, res, next) => {
         let users = usersModel(req.db);
 
         request({
-            uri: uriAccessToken(req.commonData.isDev, req.query.code),
+            uri: uriAccessToken(req.commonData.isDev, req.query.code, req.protocol),
             transform: JSON.parse
         })
         .then(body => {
@@ -52,8 +52,8 @@ function uriUserInfo(userId, accessToken) {
         '?fields=domain&user_id=' + userId + '&v=5.52&access_token=' + accessToken;
 }
 
-function uriAccessToken(isDev, code) {
-    let redirectUri = 'https://' + (isDev ?
+function uriAccessToken(isDev, code, protocol) {
+    let redirectUri = protocol + '://' + (isDev ?
             'localhost:3000' : 'dream-team-4.herokuapp.com') + '/auth-vk';
     return 'https://oauth.vk.com/access_token?' +
         'client_id=5471140&client_secret=ydvR6wzaC6IHyMMJYawU&' +

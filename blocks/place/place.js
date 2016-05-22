@@ -1,3 +1,5 @@
+'use strict';
+
 require('./place.css');
 require('./bootstrap-image-gallery.css');
 

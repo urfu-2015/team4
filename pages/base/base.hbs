@@ -3,21 +3,30 @@
     <head>
         {{#block "head-scripts"}}{{/block}}
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {{#block "title" }}{{/block}}
-        {{#block "metaDesc"}}{{/block}}
+        {{#block "metaDesc"}}
+            <meta name="description" content="Сервис фотоквестов by Team4">
+        {{/block}}
+        {{#block "metaKeywords"}}
+            <meta name="keywords" content="Яндекс, Team4, Фотоквесты, Мохов">
+        {{/block}}
         <link rel="shortcut icon" href="http://www.todoapk.net/wp-content/uploads/2014/10/snap-camera-hdr.png" type="image/x-icon">
+        <link rel="image_src" href="http://www.todoapk.net/wp-content/uploads/2014/10/snap-camera-hdr.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
         integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/0.4.5/sweet-alert.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.min.css">
         {{#if commonData.isDev}}
             <link rel="stylesheet" href="/base.css">
         {{else}}
-            <link rel="stylesheet" href="//dream-team-4.surge.sh/base.css">
+            <link rel="stylesheet" href="//creepy404nf.surge.sh/base.css">
         {{/if}}
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         {{#block "styles"}}{{/block}}
     </head>
     <body>
@@ -32,11 +41,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
                 integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/0.4.5/sweet-alert.min.js"></script>
-        <script src="//dream-team-4.surge.sh/horsey.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/horsey/3.0.0/horsey.min.js"></script>
         {{#if commonData.isDev}}
             <script src="/base.js"></script>
         {{else}}
-            <script src="//dream-team-4.surge.sh/base.js"></script>
+            <script src="//creepy404nf.surge.sh/base.js"></script>
         {{/if}}
         {{#block "scripts"}}{{/block}}
     </body>

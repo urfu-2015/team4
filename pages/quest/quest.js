@@ -52,6 +52,7 @@ $(function () {
         .done(function (msg) {
             if (msg && msg.redirect) {
                 window.location = msg.redirect;
+                return;
             }
 
             var comment = $('<div></div>', {
@@ -107,8 +108,8 @@ $(function () {
         .done(function (res) {
             if (res && res.redirect) {
                 window.location = res.redirect;
+                return;
             }
-
             $(button).remove();
 
             $('.place .caption').each(function () {

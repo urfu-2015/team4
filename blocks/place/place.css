@@ -86,6 +86,15 @@
     background: url("poi.gif") no-repeat center;
 }
 
+.blueimp-gallery .modal-body img,
+.blueimp-gallery .modal-body .video-content video,
+.blueimp-gallery .modal-body .video-content iframe,
+.blueimp-gallery .modal-body .video-content a
+{
+    margin: 0;
+    width: 100%;
+}
+
 @media screen and (min-width: 768px)
 {
 

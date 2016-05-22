@@ -17,7 +17,7 @@ app.use(cookieParser);
 var agent = request.agent(app);
 
 describe('test a user login', function () {
-    it('should set an identification cookie on a successful login', function (done) {
+    it.skip('should set an identification cookie on a successful login', function (done) {
         agent
             .post('/user/login')
             .send({email: 'a@a.com', password: 'qwer'})

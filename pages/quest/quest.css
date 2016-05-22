@@ -13,8 +13,8 @@
 .likes .badge
 {
     position: absolute;
-    top: 39px;
-    right: 0;
+    top: 32px;
+    right: 3px;
 }
 
 .quest-title

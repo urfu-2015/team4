@@ -107,4 +107,4 @@ npm start
 8.  Идём на сайт и создаём pull-request, указывая нашу ветку.
 
 ### Presentation
-[Гляди сюда](https://rawgit.com/urfu-2015/team4/master/presentation/index.html)
+[Гляди тут](https://rawgit.com/urfu-2015/team4/master/presentation/index.html)
